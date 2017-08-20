@@ -8,7 +8,7 @@ const char *vertexShaderSource = "#version 330 core\n"
 "void main()\n"
 "{\n"
 "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"   color = vec4(1.0f, 0.0f, 1.0f, 1.0f);\n"
+"   color = vec4(aPos.xyz, 1.0f);\n"
 	"}\0";
 const char *fragmentShaderSource = "#version 330 core\n"
 	"out vec4 FragColor;\n"
