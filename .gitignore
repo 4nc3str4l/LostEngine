@@ -4,6 +4,8 @@
 *.idb
 *.exp
 *.iobj
+*.opendb
+*.opensdf
 *.ipdb
 *.tlog
 *.tlog/
