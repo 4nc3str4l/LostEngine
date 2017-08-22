@@ -52,6 +52,7 @@ int InitWindow() {
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	window = glfwCreateWindow(800, 600, "Rendering Engine", NULL, NULL);
+
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -69,6 +70,8 @@ int InitWindow() {
 	glViewport(0, 0, 800, 600);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+	glfwSwapInterval(0);
 }
 
 int main(void)
