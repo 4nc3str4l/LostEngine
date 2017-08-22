@@ -4,6 +4,8 @@
 #include "Shader.h"
 #include "Texture.h"
 
+float ammount = 0.0f;
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
@@ -23,11 +25,18 @@ void processInput(GLFWwindow *window)
 	if (glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 
-	if (glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+		ammount += 0.01f;
+		if (ammount > 1.0f)
+			ammount = 1.0f;
+	}
+		
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+		ammount -= 0.01f;
+		if (ammount < 0.0f)
+			ammount = 0.0f;
 
-	if (glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+	}
 }
 
 GLFWwindow* window;
@@ -130,6 +139,7 @@ int main(void)
 		texture2.use();
 
 		shader.use();
+		shader.setFloat("ammount", ammount);
 		glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		
