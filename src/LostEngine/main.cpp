@@ -1,82 +1,20 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include<iostream>
 #include "Shader.h"
 #include "Texture.h"
+#include "Window.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-float ammount = 0.0f;
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	glViewport(0, 0, width, height);
-}
-
-void processInput(GLFWwindow *window)
-{
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
-
-	if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	if (glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-
-	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-		ammount += 0.01f;
-		if (ammount > 1.0f)
-			ammount = 1.0f;
-	}
-		
-	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-		ammount -= 0.01f;
-		if (ammount < 0.0f)
-			ammount = 0.0f;
-
-	}
-}
-
-GLFWwindow* window;
-int InitWindow() {
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
-	window = glfwCreateWindow(800, 600, "Rendering Engine", NULL, NULL);
-
-	if (window == NULL)
-	{
-		std::cout << "Failed to create GLFW window" << std::endl;
-		glfwTerminate();
-		return -1;
-	}
-
-	glfwMakeContextCurrent(window);
-
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "Failed to initialize GLAD" << std::endl;
-	}
-
-	glViewport(0, 0, 800, 600);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-
-	glfwSwapInterval(0);
-}
-
 int main(void)
 {
-	InitWindow();
+	Window window = Window(800, 600, "Lost Engine");
+	
+	if (window.Init() == -1)
+		return -1;
+
+	window.ClearColor(0.1f, 0.2f, 1.0f, 1.0f);
 
 	//------------------------
 	//         SHADER
@@ -85,11 +23,9 @@ int main(void)
 
 	shader.use(); // don't forget to activate/use the shader before setting uniforms!
 	Texture texture1 = Texture("./textures/container.jpg", true);
-	Texture texture2 = Texture("./textures/awesomeface.png", true);
 
 	glUniform1i(glGetUniformLocation(shader.ID, "texture1"), 0);
-	shader.setInt("texture2", 1);
-
+	
 	float verticesData[] = {
 		// positions          // colors           // texture coords
 		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
@@ -133,18 +69,15 @@ int main(void)
 	glBindVertexArray(0);
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	while (!glfwWindowShouldClose(window))
+	while (window.IsApplicationRunning())
 	{
-		processInput(window);
+		//processInput(window);
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		// bind textures on corresponding texture units
 		glActiveTexture(GL_TEXTURE0);
 		texture1.use();
-		glActiveTexture(GL_TEXTURE1);
-		texture2.use();
-
 		shader.use();
 
 		// create transformations
@@ -155,25 +88,14 @@ int main(void)
 		unsigned int transformLoc = glGetUniformLocation(shader.ID, "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
-		shader.setFloat("ammount", ammount);
 		glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		
-		// create transformations
-		glm::mat4 transform2;
-		transform2 = glm::translate(transform2, glm::vec3(0.0f, -0.5f, 0.0f));
-		transform2 = glm::scale(transform2, glm::vec3(sin(glfwGetTime()), sin(glfwGetTime()), sin(glfwGetTime())));
-		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform2));
 
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-		glfwSwapBuffers(window);
-		glfwPollEvents();
+		window.Update();
 	}
 
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 
-	glfwTerminate();
 	return 0;
 }
