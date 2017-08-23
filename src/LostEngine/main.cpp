@@ -1,7 +1,7 @@
 #include<iostream>
-#include "Shader.h"
-#include "Texture.h"
-#include "Window.h"
+#include "renderEngine/Shader.h"
+#include "renderEngine/Texture.h"
+#include "renderEngine/Window.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -9,7 +9,7 @@
 
 int main(void)
 {
-	Window window = Window(800, 600, "Lost Engine");
+	Window window = Window(1920, 1200, "Lost Engine", false);
 	
 	if (window.Init() == -1)
 		return -1;
