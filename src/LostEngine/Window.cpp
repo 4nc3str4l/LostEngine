@@ -24,11 +24,12 @@ void framebuffer_size_callback(GLFWwindow* _window, int _width, int _height)
 	win->Height = _height;
 }
 
-Window::Window(int _width, int _heigth, char* _title)
+Window::Window(int _width, int _heigth, char* _title, bool _vSync)
 {
 	Width = _width;
 	Height = _heigth;
 	Title = _title;
+	VSync = _vSync;
 }
 
 Window::~Window()
@@ -66,7 +67,7 @@ int Window::Init()
 	glViewport(0, 0, Width, Height);
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	glfwSwapInterval(0);
+	glfwSwapInterval(VSync ? 1 : 0);
 }
 
 bool Window::IsApplicationRunning()

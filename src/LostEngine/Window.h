@@ -11,8 +11,9 @@ public:
 	int Width;
 	int Height;
 	char* Title;
+	bool VSync;
 public:
-	Window(int _width, int _heigth, char* _title);
+	Window(int _width, int _heigth, char* _title, bool _vSync);
 	~Window();
 	int Init();
 	bool IsApplicationRunning();
