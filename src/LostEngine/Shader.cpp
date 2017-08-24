@@ -55,8 +55,6 @@ Shader::Shader(const GLchar * _vertexPath, const GLchar * _fragmentPath)
 	// delete the shaders as they're linked into our program now and no longer necessary
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
-
-
 }
 
 Shader::~Shader()

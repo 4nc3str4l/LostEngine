@@ -7,11 +7,16 @@ class Transform
 public:
 	Transform();
 	~Transform();
-	glm::mat4 GetModelMatrix();
+	void SetRotation(float _x, float _y, float _z);
+	void SetPosition(float _x, float _y, float _z);
+	void SetScale(float _x, float _y, float _z);
+private:
+	void UpdateModelMatrix();
 public:
-	glm::vec3 Position;
-	glm::vec3 Rotation;
-	glm::vec3 Scale;
-
+	glm::mat4 m_ModelMatrix;
+private:
+	glm::vec3 m_Position;
+	glm::vec3 m_Rotation;
+	glm::vec3 m_Scale;
 };
 
