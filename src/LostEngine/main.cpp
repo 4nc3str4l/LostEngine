@@ -2,6 +2,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "Window.h"
+#include "Transform.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -68,6 +69,8 @@ int main(void)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
+	Transform transform = Transform();
+
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	while (window.IsApplicationRunning())
 	{
@@ -79,10 +82,10 @@ int main(void)
 		shader.use();
 
 		// create transformations
-		glm::mat4 model;
 		glm::mat4 view;
 		glm::mat4 projection;
-		model = glm::rotate(model, (float)sin(glfwGetTime()), glm::vec3(1.0f, 0.0f, 0.0f));
+		transform.SetRotation((float)sin(glfwGetTime()), 0, 0);
+		transform.SetPosition((float)sin(glfwGetTime()) + 20, 0, 0);
 		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -10.0f));
 		view = glm::rotate(view, (float)sin(glfwGetTime()), glm::vec3(0.0f, 1.0f , 0.0f));
 		projection = glm::perspective(glm::radians(45.0f), (float)800 / (float)600, 0.1f, 100.0f);
@@ -93,7 +96,7 @@ int main(void)
 		unsigned int projectionLoc = glGetUniformLocation(shader.ID, "projection");
 
 		// pass them to the shaders (3 different ways)
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(transform.m_ModelMatrix));
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
 		// note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, &projection[0][0]);
