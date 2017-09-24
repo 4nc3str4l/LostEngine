@@ -1,22 +1,20 @@
 #pragma once
-#include<glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+
+#include<glm/gtc/matrix_transform.hpp>
+#include<glm/gtc/type_ptr.hpp>
 
 class Transform
 {
 public:
 	Transform();
 	~Transform();
-	void SetRotation(float _x, float _y, float _z);
-	void SetPosition(float _x, float _y, float _z);
-	void SetScale(float _x, float _y, float _z);
-private:
-	void UpdateModelMatrix();
+
 public:
-	glm::mat4 m_ModelMatrix;
+	glm::mat4 ModelMatrix;
+
 private:
-	glm::vec3 m_Position;
-	glm::vec3 m_Rotation;
-	glm::vec3 m_Scale;
+	glm::vec3 _position;
+	glm::vec3 _rotation;
+	glm::vec3 _scale;
 };
 
