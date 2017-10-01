@@ -2,9 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\LostEngine",
-    "\\src\\LostEngine\\shaders"
+    "\\src\\LostEngine\\Engine",
+    "\\src\\LostEngine\\Engine\\Gfx",
+    "\\src\\LostEngine\\Engine\\Gfx\\Utils"
   ],
-  "SelectedNode": "\\src\\LostEngine\\main.cpp",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
