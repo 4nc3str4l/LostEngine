@@ -132,11 +132,16 @@
     <ClCompile Include="Engine\Gfx\Models\Model.cpp" />
     <ClCompile Include="Engine\Gfx\Utils\Camera.cpp" />
     <ClCompile Include="Engine\Gfx\Utils\Shader.cpp" />
-    <ClCompile Include="Engine\main.cpp" />
+    <ClCompile Include="Game\main.cpp" />
     <ClCompile Include="Engine\Gfx\Lights\SpotLight.cpp" />
     <ClCompile Include="Engine\Gfx\Lights\Light.cpp" />
     <ClCompile Include="Engine\Gfx\Lights\PointLight.cpp" />
     <ClCompile Include="Engine\Gfx\Utils\stb_image.cpp" />
+    <ClCompile Include="Game\Water\WaterTile.cpp" />
+    <ClCompile Include="Game\Water\WaterRenderer.cpp" />
+    <ClCompile Include="Game\Water\WaterShader.cpp" />
+    <ClCompile Include="Engine\Gfx\Models\RawModel.cpp" />
+    <ClCompile Include="Engine\Gfx\Utils\Loader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Gfx\Lights\DirectionalLight.h" />
@@ -149,6 +154,15 @@
     <ClInclude Include="Engine\Gfx\Lights\SpotLight.h" />
     <ClInclude Include="Engine\Gfx\Lights\Light.h" />
     <ClInclude Include="Engine\Gfx\Lights\PointLight.h" />
+    <ClInclude Include="Game\Water\WaterTile.h" />
+    <ClInclude Include="Game\Water\WaterRenderer.h" />
+    <ClInclude Include="Game\Water\WaterShader.h" />
+    <ClInclude Include="Engine\Gfx\Models\RawModel.h" />
+    <ClInclude Include="Engine\Gfx\Utils\Loader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\Water\water.fs" />
+    <None Include="shaders\Water\water.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

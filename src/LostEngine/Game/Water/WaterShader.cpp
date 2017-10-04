@@ -5,7 +5,6 @@ WaterShader::WaterShader()
 	Shader = new LostEngine::Gfx::Shader("./shaders/water.vs", "./shaders/water.vs");
 }
 
-
 WaterShader::~WaterShader()
 {
 }

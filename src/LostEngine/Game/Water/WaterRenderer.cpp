@@ -2,8 +2,9 @@
 
 
 
-WaterRenderer::WaterRenderer()
+WaterRenderer::WaterRenderer(Loader* _loader, WaterShader* _shader, glm::mat4* _projectionMatrix)
 {
+
 }
 
 
