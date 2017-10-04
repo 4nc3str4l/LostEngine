@@ -6,13 +6,13 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
-#include "Gfx/Utils/Shader.h"
-#include "Gfx/Utils/Camera.h"
-#include "Gfx/Models/Model.h"
+#include "../Engine/Gfx/Utils/Shader.h"
+#include "../Engine/Gfx/Utils/Camera.h"
+#include "../Engine/Gfx/Models/Model.h"
 
-#include "Gfx/Lights/DirectionalLight.h"
-#include "Gfx/Lights/SpotLight.h"
-#include "Gfx/Lights/PointLight.h"
+#include "../Engine/Gfx/Lights/DirectionalLight.h"
+#include "../Engine/Gfx/Lights/SpotLight.h"
+#include "../Engine/Gfx/Lights/PointLight.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -23,7 +23,7 @@ void processInput(GLFWwindow *window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-LostEngine::Gfx::Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+LostEngine::Gfx::Camera camera(glm::vec3(0.0f, 0.0f, 80.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -153,7 +153,7 @@ int main()
 
 		glm::mat4 model;
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+		model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 		ourShader.SetMat4("model", model);
 		ourModel.Draw(ourShader);
 

@@ -159,6 +159,11 @@ namespace LostEngine { namespace Gfx {
 		glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 	}
 
+	void Shader::BindAttribute(const std::string &_name, const int _attribute) const
+	{
+		glBindAttribLocation(ID, _attribute, _name.c_str());
+	}
+
 	void Shader::CheckCompileErrors(GLuint shader, std::string type)
 	{
 		GLint success;
