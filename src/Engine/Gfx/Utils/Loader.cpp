@@ -26,26 +26,26 @@ Loader::~Loader()
 	}
 }
 
-void Loader::StoreDataInAttributeList(int _attributeNumber, int _coordinateSize, float* _data)
+void Loader::StoreDataInAttributeList(int _attributeNumber, int _coordinateSize, float* _data, int _length)
 {
 	GLuint vboID;
     GL_CHECK(glGenBuffers(1, &vboID));
 
 	vbos.push_back(vboID);
     GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, vboID));
-    GL_CHECK(glBufferData(GL_ARRAY_BUFFER, sizeof(float)*12, &_data[0], GL_STATIC_DRAW));
+    GL_CHECK(glBufferData(GL_ARRAY_BUFFER, sizeof(float) * _length, &_data[0], GL_STATIC_DRAW));
     GL_CHECK(glVertexAttribPointer(_attributeNumber, _coordinateSize, GL_FLOAT, GL_FALSE, 0, (void*)0));
     GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
-RawModel* Loader::LoadToVAO(float* positions, int dimensions)
+RawModel* Loader::LoadToVAO(float* positions, int dimensions, int _length)
 {
 	int vaoID = CreateVAO();
-	StoreDataInAttributeList(0, dimensions, positions);
+	StoreDataInAttributeList(0, dimensions, positions, _length);
 	
 	// Unbind
     GL_CHECK(glBindVertexArray(0));
-	return new RawModel(vaoID, 12);
+	return new RawModel(vaoID, _length);
 }
 
 GLuint Loader::CreateVAO()
