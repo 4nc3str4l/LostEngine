@@ -29,12 +29,13 @@ Loader::~Loader()
 void Loader::StoreDataInAttributeList(int _attributeNumber, int _coordinateSize, float* _data)
 {
 	GLuint vboID;
-	glGenBuffers(1, &vboID);
+    GL_CHECK(glGenBuffers(1, &vboID));
+
 	vbos.push_back(vboID);
-	glBindBuffer(GL_ARRAY_BUFFER, vboID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float), &_data[0], GL_STATIC_DRAW);
-	glVertexAttribPointer(_attributeNumber, _coordinateSize, GL_FLOAT, GL_FALSE, 0, (void*)0);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+    GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, vboID));
+    GL_CHECK(glBufferData(GL_ARRAY_BUFFER, sizeof(float)*12, &_data[0], GL_STATIC_DRAW));
+    GL_CHECK(glVertexAttribPointer(_attributeNumber, _coordinateSize, GL_FLOAT, GL_FALSE, 0, (void*)0));
+    GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
 RawModel* Loader::LoadToVAO(float* positions, int dimensions)
@@ -43,14 +44,15 @@ RawModel* Loader::LoadToVAO(float* positions, int dimensions)
 	StoreDataInAttributeList(0, dimensions, positions);
 	
 	// Unbind
-	glBindVertexArray(0);
+    GL_CHECK(glBindVertexArray(0));
 	return new RawModel(vaoID, 12);
 }
 
 GLuint Loader::CreateVAO()
 {
-	GLuint vaoID;
-	glGenVertexArrays(1, &vaoID);
+	GLuint vaoID = 0;
+    GL_CHECK(glGenVertexArrays(1, &vaoID));
+    GL_CHECK(glBindVertexArray(vaoID));
 	vaos.push_back(vaoID);
 	return vaoID;
 }
