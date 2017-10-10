@@ -17,6 +17,16 @@ Window::Window(char* _title, int _width, int _heigth, bool _vSync)
     Width = _width;
     Heigth = _heigth;
     VSync = _vSync;
+
+    for (int i = 0; i < MAX_KEYS; i++)
+    {
+        keys[i] = false;
+    }
+
+    for (int i = 0; i < MAX_BUTTONS; i++)
+    {
+        mouseButtons[i] = false;
+    }
 }
 
 int Window::Init()
@@ -51,11 +61,10 @@ int Window::Init()
     glEnable(GL_DEPTH_TEST);
     glfwSetWindowUserPointer(WindowHandle, this);
     glfwSetFramebufferSizeCallback(WindowHandle, framebuffer_size_callback);
+    glfwSetKeyCallback(WindowHandle, key_callback);
+    glfwSetMouseButtonCallback(WindowHandle, mouse_button_callback);
+    glfwSetCursorPosCallback(WindowHandle, cursor_position_callback);
     return 0;
-}
-
-void Window::RestoreState()
-{
 }
 
 void Window::Update()
@@ -78,6 +87,41 @@ void Window::SetTitle(const char * _title)
 Window::~Window()
 {
     glfwTerminate();
+}
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    Window* win = (Window*)glfwGetWindowUserPointer(window);
+    win->keys[key] = action != GLFW_RELEASE;
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+    Window* win = (Window*)glfwGetWindowUserPointer(window);
+    win->mouseButtons[button] = action != GLFW_RELEASE;
+}
+
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    Window* win = (Window*)glfwGetWindowUserPointer(window);
+    win->MousePosX = xpos;
+    win->MousePosY = ypos;
+}
+
+bool Window::isKeyPressed(unsigned int keycode) const
+{
+    if (keycode >= MAX_KEYS)
+        return false;
+
+    return keys[keycode];
+}
+
+bool Window::isMouseButtonPressed(unsigned int button) const
+{
+    if (button >= MAX_BUTTONS)
+        return false;
+
+    return mouseButtons[button];
 }
 
 }}
