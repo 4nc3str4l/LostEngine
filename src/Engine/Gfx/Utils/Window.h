@@ -22,8 +22,6 @@ public:
     GLFWwindow* WindowHandle;
     bool Resized;
     bool VSync;
-private:
-
 };
 
 }}
