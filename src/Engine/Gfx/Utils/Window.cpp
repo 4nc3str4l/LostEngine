@@ -27,6 +27,9 @@ Window::Window(char* _title, int _width, int _heigth, bool _vSync)
     {
         mouseButtons[i] = false;
     }
+
+    MousePosX = _width / 2.0f;
+    MousePosY = _heigth / 2.0f;
 }
 
 int Window::Init()
@@ -64,6 +67,7 @@ int Window::Init()
     glfwSetKeyCallback(WindowHandle, key_callback);
     glfwSetMouseButtonCallback(WindowHandle, mouse_button_callback);
     glfwSetCursorPosCallback(WindowHandle, cursor_position_callback);
+    glfwSetScrollCallback(WindowHandle, scroll_callback);
     return 0;
 }
 
@@ -122,6 +126,12 @@ bool Window::isMouseButtonPressed(unsigned int button) const
         return false;
 
     return mouseButtons[button];
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    Window* win = (Window*)glfwGetWindowUserPointer(window);
+    win->scrollOffset = yoffset;
 }
 
 }}

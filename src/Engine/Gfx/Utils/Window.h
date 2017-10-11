@@ -25,8 +25,9 @@ public:
     GLFWwindow* WindowHandle;
     bool Resized;
     bool VSync;
-    double MousePosX;
-    double MousePosY;
+    double MousePosX = 0;
+    double MousePosY = 0;
+    double scrollOffset = 0.0;
 public:
 
     bool isKeyPressed(unsigned int keycode) const;
@@ -39,6 +40,7 @@ private:
     friend static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
     friend static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
     friend static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
+    friend static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 };
 
 }}
