@@ -1,5 +1,6 @@
 #pragma once
 #include "../Gfx/Utils/Window.h"
+#include "../Gfx/Utils/Loader.h"
 
 using namespace LostEngine;
 using namespace Gfx;
