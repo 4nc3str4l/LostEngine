@@ -1,9 +1,11 @@
 #pragma once
 #include "../Gfx/Utils/Window.h"
 #include "../Gfx/Utils/Loader.h"
+#include "../Input/Input.h"
 
 using namespace LostEngine;
 using namespace Gfx;
+using namespace InputHandlers;
 
 namespace LostEngine { namespace Logic {
 class GameLogic

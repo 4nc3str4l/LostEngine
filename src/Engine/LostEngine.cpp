@@ -12,6 +12,7 @@ namespace LostEngine {
 
 	void LEngine::Start() 
 	{
+		Input::Initialize();
 		window->Init();
 		gameLogic->Init(window, loader);
 		Run();
@@ -25,7 +26,7 @@ namespace LostEngine {
 
 			timer->Update();
 			gameLogic->Input(window, timer->DeltaTime);
-			window->scrollOffset = 0;
+			Input::ScrollOffset = 0;
 			gameLogic->Update(timer->DeltaTime, window);
 			
 			window->Update();

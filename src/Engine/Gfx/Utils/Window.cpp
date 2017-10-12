@@ -18,18 +18,8 @@ Window::Window(char* _title, int _width, int _heigth, bool _vSync)
     Heigth = _heigth;
     VSync = _vSync;
 
-    for (int i = 0; i < MAX_KEYS; i++)
-    {
-        keys[i] = false;
-    }
-
-    for (int i = 0; i < MAX_BUTTONS; i++)
-    {
-        mouseButtons[i] = false;
-    }
-
-    MousePosX = _width / 2.0f;
-    MousePosY = _heigth / 2.0f;
+    Input::MousePosX = _width / 2.0f;
+	Input::MousePosY = _heigth / 2.0f;
 }
 
 int Window::Init()
@@ -102,42 +92,24 @@ Window::~Window()
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     Window* win = (Window*)glfwGetWindowUserPointer(window);
-    win->keys[key] = action != GLFW_RELEASE;
+    Input::keys[key] = action != GLFW_RELEASE;
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
     Window* win = (Window*)glfwGetWindowUserPointer(window);
-    win->mouseButtons[button] = action != GLFW_RELEASE;
+    Input::mouseButtons[button] = action != GLFW_RELEASE;
 }
 
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
-    Window* win = (Window*)glfwGetWindowUserPointer(window);
-    win->MousePosX = xpos;
-    win->MousePosY = ypos;
-}
-
-bool Window::isKeyPressed(unsigned int keycode) const
-{
-    if (keycode >= MAX_KEYS)
-        return false;
-
-    return keys[keycode];
-}
-
-bool Window::isMouseButtonPressed(unsigned int button) const
-{
-    if (button >= MAX_BUTTONS)
-        return false;
-
-    return mouseButtons[button];
+    Input::MousePosX = xpos;
+    Input::MousePosY = ypos;
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-    Window* win = (Window*)glfwGetWindowUserPointer(window);
-    win->scrollOffset = yoffset;
+    Input::ScrollOffset = yoffset;
 }
 
 }}
