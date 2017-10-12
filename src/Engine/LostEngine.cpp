@@ -20,7 +20,6 @@ namespace LostEngine {
 
 	void LEngine::HandleInput()
 	{
-		gameLogic->Input(window, timer->DeltaTime);
 		Input::ScrollOffset = 0;
 	}
 
@@ -40,8 +39,11 @@ namespace LostEngine {
 
 			while (acumulator >= interval)
 			{
+				float realDelta = timer->DeltaTime;
+				timer->DeltaTime = interval;
 				Update(interval);
 				acumulator -= interval;
+				timer->DeltaTime = realDelta;
 			}
 			Render();
 		}
