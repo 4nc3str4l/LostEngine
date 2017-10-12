@@ -19,7 +19,6 @@ void Input::Initialize()
 	{
 		Input::mouseButtons[i] = false;
 	}
-
 }
 
 bool Input::IsKeyPressed(unsigned int keycode)

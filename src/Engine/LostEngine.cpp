@@ -18,20 +18,48 @@ namespace LostEngine {
 		Run();
 	}
 
+	void LEngine::HandleInput()
+	{
+		gameLogic->Input(window, timer->DeltaTime);
+		Input::ScrollOffset = 0;
+	}
+
 	void LEngine::Run()
 	{
+		float elapsedTime;
+		float acumulator = 0.0f;
+		float interval = 1.0f / 60;
+
 		while (window->IsOpen())
 		{
-			window->Clear();
-
 			timer->Update();
-			gameLogic->Input(window, timer->DeltaTime);
-			Input::ScrollOffset = 0;
-			gameLogic->Update(timer->DeltaTime, window);
-			
-			window->Update();
+			elapsedTime = timer->DeltaTime;
+			acumulator += elapsedTime;
+
+			HandleInput();
+
+			while (acumulator >= interval)
+			{
+				Update(interval);
+				acumulator -= interval;
+			}
+			Render();
 		}
 	}
+
+	void LEngine::Update(float _delta)
+	{
+		gameLogic->Update(_delta, window);
+	}
+
+	void LEngine::Render()
+	{
+		window->Clear();
+		gameLogic->Render(window);
+		window->Update();
+	}
+
+
 
 	LEngine::~LEngine()
 	{

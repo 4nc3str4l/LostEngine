@@ -17,6 +17,9 @@ namespace LostEngine {
 		~LEngine();
 		void Start();
 		void Run();
+		void Update(float _delta);
+		void Render();
+		void HandleInput();
 	private:
 		Window* window;
 		GameLogic* gameLogic;
