@@ -56,5 +56,4 @@ GLuint Loader::CreateVAO()
 	vaos.push_back(vaoID);
 	return vaoID;
 }
-
 }}

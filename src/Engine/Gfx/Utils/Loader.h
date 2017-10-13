@@ -36,8 +36,8 @@ public:
 	Loader();
 	~Loader();
 	RawModel* LoadToVAO(float* positions, int dimensions, int _arraySize);
-private:
 	GLuint CreateVAO();
+private:
 	void StoreDataInAttributeList(int _attributeNumber, int _coordinateSize, float* _data, int _length);
 };
 
