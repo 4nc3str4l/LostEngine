@@ -78,7 +78,9 @@ void UIImage::Render(Window * _window, Shader * _shader)
 {
 	_shader->Use();
 
+	position->y = sin(glfwGetTime());
 	CalcModelMatrix();
+	
 	_shader->SetMat4("model", *model);
 	// bind Texture
 	glBindTexture(GL_TEXTURE_2D, TextureID);
@@ -92,14 +94,22 @@ void UIImage::CalcModelMatrix()
 	(*model)[0][0] = 1.0f;
 	(*model)[1][0] = 0.0f;
 	(*model)[2][0] = 0.0f;
+	(*model)[3][0] = 0.0f;
 
 	(*model)[0][1] = 0.0f;
 	(*model)[1][1] = 1.0f;
 	(*model)[2][1] = 0.0f;
+	(*model)[3][1] = 0.0f;
 
 	(*model)[0][2] = 0.0f;
 	(*model)[1][2] = 0.0f;
 	(*model)[2][2] = 1.0f;
+	(*model)[3][2] = 0.0f;
+
+	(*model)[0][3] = 0.0f;
+	(*model)[1][3] = 0.0f;
+	(*model)[2][3] = 0.0f;
+	(*model)[3][3] = 1.0f;
 
 	*model = glm::translate(*model, *this->position);
 	*model = glm::rotate(*model, this->rotation->x, glm::vec3(1, 0, 0));
