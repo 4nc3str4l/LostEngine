@@ -61,8 +61,6 @@ namespace LostEngine {
 		window->Update();
 	}
 
-
-
 	LEngine::~LEngine()
 	{
 		delete loader;

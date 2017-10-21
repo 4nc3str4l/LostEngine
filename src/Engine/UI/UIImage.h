@@ -1,8 +1,12 @@
 #pragma once
 
 #include<iostream>
-#include "../Gfx/Utils/Loader.h"
+
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+#include "../Gfx/Utils/Loader.h"
 #include "../Gfx/Utils/stb_image.h"
 #include "../Gfx/Utils/Shader.h"
 #include "../Gfx/Utils/Window.h"
@@ -21,10 +25,12 @@ public:
 	glm::vec3* position;
 	glm::vec3* rotation;
 	glm::vec3* scale;
+	glm::mat4* model;
 	GLuint TextureID;
 private:
-	unsigned int VBO;
-	unsigned int VAO;
-	unsigned int EBO;
+	GLuint VBO;
+	GLuint VAO;
+	GLuint EBO;
+	void CalcModelMatrix();
 };
 }}
