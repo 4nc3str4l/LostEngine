@@ -29,6 +29,7 @@ private:
     friend static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
     friend static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
     friend static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+    void logGPUInfo();
 };
 
 }}

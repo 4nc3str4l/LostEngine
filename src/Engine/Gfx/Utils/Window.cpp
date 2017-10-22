@@ -8,7 +8,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     ownWindow->Width = width;
     ownWindow->Heigth = height;
     std::cout << ownWindow->Width << ", " << ownWindow->Heigth << std::endl;
-    glViewport(0, 0, width, height);
+	ownWindow->Resized = true;
+	glViewport(0, 0, width, height);
 }
 
 Window::Window(char* _title, int _width, int _heigth, bool _vSync)
@@ -25,8 +26,8 @@ Window::Window(char* _title, int _width, int _heigth, bool _vSync)
 int Window::Init()
 {
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 #ifdef __APPLE__
@@ -51,6 +52,8 @@ int Window::Init()
         return -1;
     }
 
+    logGPUInfo();
+
     glEnable(GL_DEPTH_TEST);
     glfwSetWindowUserPointer(WindowHandle, this);
     glfwSetFramebufferSizeCallback(WindowHandle, framebuffer_size_callback);
@@ -63,6 +66,7 @@ int Window::Init()
 
 void Window::Update()
 {
+	Resized = false;
     glfwSwapBuffers(WindowHandle);
     glfwPollEvents();
 }
@@ -87,6 +91,11 @@ void Window::Clear()
 Window::~Window()
 {
     glfwTerminate();
+}
+
+void Window::logGPUInfo()
+{
+    std::cout << "OpenGL version supported by this platform:\t" << glGetString(GL_VERSION) << std::endl;
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)

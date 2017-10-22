@@ -3,19 +3,19 @@
 namespace LostEngine { namespace UI {
 
 float vertices[] = {
-	// positions          // colors           // texture coords
-	0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-	0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-	-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-	-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
+	// positions         // texture coords
+	0.5f,  0.5f, 0.0f,    0.0f, 0.0f, // top right
+	0.5f, -0.5f, 0.0f,    0.0f, 1.0f, // bottom right
+	-0.5f, -0.5f, 0.0f,   1.0f, 1.0f, // bottom left
+	-0.5f,  0.5f, 0.0f,   1.0f, 0.0f  // top left 
 };
 
 unsigned int indices[] = {
-	0, 1, 3, // first triangle
-	1, 2, 3  // second triangle
+	1, 2, 3,  // second triangle
+	0, 1, 3 // first triangle
 };
 
-UIImage::UIImage(const char* _texturePath, Loader* _loader)
+UIImage::UIImage(const char * _texturePath, Loader * _loader, Window* _window)
 {
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -30,15 +30,11 @@ UIImage::UIImage(const char* _texturePath, Loader* _loader)
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	
-	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
-	
+		
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(2);
 	
 	// load and create a texture 
@@ -53,12 +49,12 @@ UIImage::UIImage(const char* _texturePath, Loader* _loader)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
 	// load image, create texture and generate mipmaps
-	int width, height, nrChannels;
-	
-	unsigned char *data = stbi_load(_texturePath, &width, &height, &nrChannels, 0);
+	int nrChannels;
+
+	unsigned char *data = stbi_load(_texturePath, &textureWidth, &textureHeigth, &nrChannels, 0);
 	if (data)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeigth, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else
@@ -67,21 +63,29 @@ UIImage::UIImage(const char* _texturePath, Loader* _loader)
 	}
 	stbi_image_free(data);
 
-	// TODO: Add this inside a class transform
-	position = new glm::vec3(0, 0, 0);
-	rotation = new glm::vec3(0, 0, 0);
-	scale = new glm::vec3(1, 1, 1);
-	model = new glm::mat4(); 
+	initialWindowProportion = new glm::vec2(1.0f, 1.0f);
+	transform = new Transform();
+	color = new glm::vec3(1.0f, 1.0f, 1.0f);
 }
 
 void UIImage::Render(Window * _window, Shader * _shader)
 {
 	_shader->Use();
-
-	position->y = sin(glfwGetTime());
-	CalcModelMatrix();
+	_shader->SetVec3("color", *color);
 	
-	_shader->SetMat4("model", *model);
+	CalcViewportProportion(_window);
+
+	float lastScaleX = transform->scale->x;
+	float lastScaleY = transform->scale->y;
+	
+	transform->scale->x = transform->scale->x * initialWindowProportion->x;
+	transform->scale->y = transform->scale->y * initialWindowProportion->y;
+	_shader->SetMat4("model", *transform->GetModelMatrix());
+	
+	transform->scale->x = lastScaleX;
+	transform->scale->y = lastScaleY;
+
+	
 	// bind Texture
 	glBindTexture(GL_TEXTURE_2D, TextureID);
 
@@ -89,45 +93,24 @@ void UIImage::Render(Window * _window, Shader * _shader)
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void UIImage::CalcModelMatrix()
+// Do that only on window resize
+void UIImage::CalcViewportProportion(Window * _window)
 {
-	(*model)[0][0] = 1.0f;
-	(*model)[1][0] = 0.0f;
-	(*model)[2][0] = 0.0f;
-	(*model)[3][0] = 0.0f;
-
-	(*model)[0][1] = 0.0f;
-	(*model)[1][1] = 1.0f;
-	(*model)[2][1] = 0.0f;
-	(*model)[3][1] = 0.0f;
-
-	(*model)[0][2] = 0.0f;
-	(*model)[1][2] = 0.0f;
-	(*model)[2][2] = 1.0f;
-	(*model)[3][2] = 0.0f;
-
-	(*model)[0][3] = 0.0f;
-	(*model)[1][3] = 0.0f;
-	(*model)[2][3] = 0.0f;
-	(*model)[3][3] = 1.0f;
-
-	*model = glm::translate(*model, *this->position);
-	*model = glm::rotate(*model, this->rotation->x, glm::vec3(1, 0, 0));
-	*model = glm::rotate(*model, this->rotation->y, glm::vec3(0, 1, 0));
-	*model = glm::rotate(*model, this->rotation->z, glm::vec3(0, 0, 1));
-	*model = glm::scale(*model, *this->scale);
+	if (!_window->Resized)
+		return;
+	std::cout << "Calculating new proportions" << std::endl;
+	initialWindowProportion->x = textureWidth / (float)_window->Width * 2;
+	initialWindowProportion->y = textureHeigth / (float)_window->Heigth * 2;
 }
+
 
 UIImage::~UIImage()
 {
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
-
-	delete position;
-	delete rotation;
-	delete scale;
-	delete model;
+	delete color;
+	delete transform;
 }
 
 }}

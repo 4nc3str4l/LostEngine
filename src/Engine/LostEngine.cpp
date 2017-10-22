@@ -12,9 +12,23 @@ namespace LostEngine {
 
 	void LEngine::Start() 
 	{
+
+		LOG::SPECIAL("############################################");
+		LOG::SPECIAL("            LOST ENGINE V.0.1a");
+		LOG::SPECIAL("############################################");
+		
+		LOG::INFO("Init Input");
 		Input::Initialize();
+		LOG::CORRECT("Init Input Correct!");
+		
+		LOG::INFO("Init Graphics");
 		window->Init();
+		LOG::CORRECT("Init Graphics Correct!");
+		
+		LOG::INFO("Init Game Logic");
 		gameLogic->Init(window, loader);
+		LOG::CORRECT("Init Game Logic Correct!");
+
 		Run();
 	}
 
@@ -67,6 +81,8 @@ namespace LostEngine {
 		delete window;
 		delete gameLogic;
 		delete timer;
+
+		LOG::CORRECT("Clean Complete!");
 	}
 }
 

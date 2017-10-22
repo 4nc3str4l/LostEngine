@@ -5,6 +5,7 @@ namespace LostEngine { namespace Gfx {
 	
 	Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath /*= nullptr*/)
 	{
+        std::cout << "Building Shader: " << vertexPath << std::endl;
 		std::string vertexCode;
 		std::string fragmentCode;
 		std::string geometryCode;
