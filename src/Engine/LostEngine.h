@@ -15,7 +15,7 @@ namespace LostEngine {
 class LEngine
 {
 public:
-	LEngine(char* _windowTitle, bool _vSync, int _width, int _height, GameLogic* _gameLogic);
+	LEngine(char* _windowTitle, bool _vSync, int _width, int _height, const std::string& base, GameLogic* _gameLogic);
 	~LEngine();
 	void Start();
 	void Run();

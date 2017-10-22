@@ -3,6 +3,7 @@
 #include<vector>
 #include "../Models/RawModel.h"
 #include <glad/glad.h>
+#include "../Utils/stb_image.h"
 
 inline void CheckOpenGLError(const char* stmt, const char* fname, int line)
 {
@@ -32,11 +33,13 @@ private:
 	std::vector<GLuint> vaos;
 	std::vector<GLuint> vbos;
 	std::vector<GLuint> textures;
+	std::string* basePath;
 public:
-	Loader();
+	Loader(const std::string& _basePath);
 	~Loader();
 	RawModel* LoadToVAO(float* positions, int dimensions, int _arraySize);
 	GLuint CreateVAO();
+    GLuint LoadCubeMap(std::string* textureFiles);
 private:
 	void StoreDataInAttributeList(int _attributeNumber, int _coordinateSize, float* _data, int _length);
 };

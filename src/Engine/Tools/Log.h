@@ -16,7 +16,7 @@ namespace LostEngine { namespace Tools {
 
 class LOG {
 public:
-	 static void LOG::SPECIAL(const std::string& _specialMessage)
+	static void LOG::SPECIAL(const std::string& _specialMessage)
 	{
 #ifdef WIN32
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ENGINE_SPECIAL_COLOR);
@@ -27,7 +27,7 @@ public:
 #endif
 	}
 
-	 static void LOG::INFO(const std::string& _infoMessage)
+	static void LOG::INFO(const std::string& _infoMessage)
 	{
 #ifdef WIN32
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ENGINE_INFO_COLOR);
@@ -38,7 +38,7 @@ public:
 #endif
 	}
 
-	 static void LOG::FAIL(const std::string& _errorText)
+	static void LOG::FAIL(const std::string& _errorText)
 	{
 #ifdef WIN32
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ENGINE_ERROR_COLOR);
@@ -50,7 +50,7 @@ public:
 
 	}
 
-	 static void LOG::CORRECT(const std::string& _correctText)
+	static void LOG::CORRECT(const std::string& _correctText)
 	{
 #ifdef WIN32
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ENGINE_CORRECT_COLOR);
@@ -62,7 +62,7 @@ public:
 
 	}
 
-	 static void LOG::MESSAGE(const std::string& _message)
+	static void LOG::MESSAGE(const std::string& _message)
 	{
 #ifdef WIN32
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ENGINE_REGULAR_COLOR);
