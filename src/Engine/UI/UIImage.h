@@ -17,6 +17,7 @@ class UIImage
 {
 public:
 	UIImage(const char* _texturePath, Loader* _loader, Window* _window);
+	UIImage(GLuint _textureID, Loader* _loader);
 	~UIImage();
 	void Render(Window* _window, Shader* _shader);
 

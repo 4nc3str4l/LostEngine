@@ -16,6 +16,9 @@ public:
 	glm::vec3* rotation;
 	glm::vec3* scale;
 	glm::mat4* GetModelMatrix();
+	void SetPosition(float _x, float _y, float _z);
+	void SetRotation(float _x, float _y, float _z);
+	void SetScale(float _x, float _y, float _z);
 
 private:
 	glm::mat4* model;
