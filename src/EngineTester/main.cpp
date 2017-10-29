@@ -155,7 +155,7 @@ int main()
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 		ourShader.SetMat4("model", model);
-		ourModel.Draw(ourShader);
+		ourModel.Render(ourShader);
 
 
 		glfwSwapBuffers(window);

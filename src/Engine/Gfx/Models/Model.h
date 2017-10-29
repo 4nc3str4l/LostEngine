@@ -9,9 +9,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "Mesh.h"
-#include "../Utils/Shader.h"
-#include "../Utils/stb_image.h"
+
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -19,9 +17,15 @@
 #include <map>
 #include <vector>
 
+#include "Mesh.h"
+#include "../Utils/Shader.h"
+#include "../Utils/stb_image.h"
+#include "../../Components/RenderComponent.h"
+
 using namespace std;
 namespace LostEngine { namespace Gfx {
-class Model
+
+class Model : public Components::RenderComponent
 {
 public:
 	vector<Texture> textures_loaded;
@@ -31,8 +35,8 @@ public:
 
 public:
 	Model(string const &path, bool gamma = false);
-	void Draw(LostEngine::Gfx::Shader shader);
-
+	~Model();
+	void Render(LostEngine::Gfx::Shader* shader);
 private:
 	void loadModel(string const &path);
 	void processNode(aiNode *node, const aiScene *scene);

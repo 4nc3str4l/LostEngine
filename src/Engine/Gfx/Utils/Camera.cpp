@@ -28,6 +28,12 @@ glm::mat4 Camera::GetViewMatrix()
 void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 {
 	float velocity = MovementSpeed * deltaTime;
+	
+	if (LostEngine::InputHandlers::Input::IsKeyPressed(GLFW_KEY_LEFT_SHIFT))
+	{
+		velocity *= 4;
+	}
+
 	if (direction == FORWARD)
 		Position += Front * velocity;
 	if (direction == BACKWARD)

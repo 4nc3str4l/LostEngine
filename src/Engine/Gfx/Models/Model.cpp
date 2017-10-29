@@ -2,16 +2,22 @@
 
 namespace LostEngine { namespace Gfx {
 
-Model::Model(string const &path, bool gamma)
+Model::Model(string const &path, bool gamma):
+RenderComponent(Components::SpecificType::Type_Model)
 {
 	gammaCorrection = gamma;
 	loadModel(path);
 }
 
-void Model::Draw(LostEngine::Gfx::Shader shader)
+Model::~Model()
+{
+	//TODO: Implement destroy of the meshes
+}
+
+void Model::Render(LostEngine::Gfx::Shader* shader)
 {
 	for (unsigned int i = 0; i < meshes.size(); i++)
-		meshes[i].Draw(shader);
+		meshes[i].Draw(*shader);
 }
 
 void Model::loadModel(string const &path)
