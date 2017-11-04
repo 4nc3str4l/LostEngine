@@ -4,7 +4,8 @@ namespace LostEngine { namespace Components {
 
     enum SpecificType 
     {
-        Type_Model
+        Type_Model,
+		Type_UIImage
     };
 
     enum GlobalType

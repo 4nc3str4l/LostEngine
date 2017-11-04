@@ -15,8 +15,10 @@ unsigned int indices[] = {
 	0, 1, 3 // first triangle
 };
 
-UIImage::UIImage(const char * _texturePath, Loader * _loader, Window* _window)
+UIImage::UIImage(const char * _texturePath, Loader * _loader, Window* _window) :
+	RenderComponent(Components::SpecificType::Type_UIImage)
 {
+	m_Window = _window;
 	VAO = _loader->CreateVAO();
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
@@ -66,8 +68,10 @@ UIImage::UIImage(const char * _texturePath, Loader * _loader, Window* _window)
 	color = new glm::vec3(1.0f, 1.0f, 1.0f);
 }
 
-UIImage::UIImage(GLuint _textureID, Loader* _loader)
+UIImage::UIImage(GLuint _textureID, Loader* _loader, Window* _window):
+	RenderComponent(Components::SpecificType::Type_UIImage)
 {
+	m_Window = _window;
 	TextureID = _textureID;
 
 	textureWidth = 512;
@@ -96,12 +100,12 @@ UIImage::UIImage(GLuint _textureID, Loader* _loader)
 	color = new glm::vec3(1.0f, 1.0f, 1.0f);
 }
 
-void UIImage::Render(Window * _window, Shader * _shader)
+void UIImage::Render(Shader * _shader)
 {
 	_shader->Use();
 	_shader->SetVec3("color", *color);
 	
-	CalcViewportProportion(_window);
+	CalcViewportProportion(m_Window);
 
 	float lastScaleX = transform->scale->x;
 	float lastScaleY = transform->scale->y;
@@ -125,6 +129,7 @@ void UIImage::CalcViewportProportion(Window * _window)
 {
 	if (!_window->Resized)
 		return;
+
 	std::cout << "Calculating new proportions" << std::endl;
 	initialWindowProportion->x = textureWidth / (float)_window->Width * 2;
 	initialWindowProportion->y = textureHeigth / (float)_window->Heigth * 2;
