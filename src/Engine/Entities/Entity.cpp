@@ -1,11 +1,11 @@
 #include "Entity.h"
 
-namespace LostEngine { namespace  Entities {
+namespace LostEngine { namespace Components {
 
 Entity::Entity()
 {
 	m_components = new std::map<GlobalType, std::vector<Component*>*>();
-	transform = new Transform();
+	transform = new Transform(this);
 }
 
 void Entity::DeleteComponentsOfType(GlobalType _type)
@@ -24,10 +24,15 @@ void Entity::DeleteComponentsOfType(GlobalType _type)
 
 Entity::~Entity()
 {
-	delete transform;
+	// If the entity contains a parent the transform will be destroyed by him
+	if(!transform->HasParent())
+		delete transform;
+
 	DeleteComponentsOfType(GlobalType::Type_PhysXComponent);
 	DeleteComponentsOfType(GlobalType::Type_RenderComponent);
 }
+
+void Entity::Tick(float _delta){}
 
 // TODO: use templates for that
 Component* Entity::AddComponent(Component* _component)

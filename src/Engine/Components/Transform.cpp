@@ -2,12 +2,14 @@
 
 namespace LostEngine { namespace Components {
 
-Transform::Transform()
+Transform::Transform(Entity* _owner)
 {
+	entity = _owner;
 	position = new glm::vec3(0, 0, 0);
 	rotation = new glm::vec3(0, 0, 0);
 	scale = new glm::vec3(1, 1, 1);
 	model = new glm::mat4();
+	parent = nullptr;
 }
 
 Transform::~Transform()
@@ -16,9 +18,13 @@ Transform::~Transform()
 	delete rotation;
 	delete scale;
 	delete model;
+	for (Transform* child : chilldren)
+	{
+		delete child;
+	}
 }
 
-glm::mat4* Transform::GetModelMatrix()
+const void Transform::ResetModelMatrix()
 {
 	(*model)[0][0] = 1.0f;
 	(*model)[1][0] = 0.0f;
@@ -39,12 +45,45 @@ glm::mat4* Transform::GetModelMatrix()
 	(*model)[1][3] = 0.0f;
 	(*model)[2][3] = 0.0f;
 	(*model)[3][3] = 1.0f;
+}
 
-	*model = glm::translate(*model, *this->position);
-	*model = glm::rotate(*model, this->rotation->x, glm::vec3(1, 0, 0));
-	*model = glm::rotate(*model, this->rotation->y, glm::vec3(0, 1, 0));
-	*model = glm::rotate(*model, this->rotation->z, glm::vec3(0, 0, 1));
-	*model = glm::scale(*model, *this->scale);
+void Transform::CalcModelMatrix(Transform* _toCompute)
+{
+	*model = glm::translate(*model, *_toCompute->position);
+	*model = glm::rotate(*model, glm::radians(_toCompute->rotation->x), glm::vec3(1, 0, 0));
+	*model = glm::rotate(*model, glm::radians(_toCompute->rotation->y), glm::vec3(0, 1, 0));
+	*model = glm::rotate(*model, glm::radians(_toCompute->rotation->z), glm::vec3(0, 0, 1));
+	*model = glm::scale(*model, *_toCompute->scale);
+}
+
+glm::mat4* Transform::GetModelMatrix()
+{
+
+	ResetModelMatrix();
+
+	if (HasParent()) 
+	{
+		// Populate the transformation stack
+		std::stack<Transform*> transformStack;
+		Transform* current = this;
+		do 
+		{
+			transformStack.push(current);
+			current = current->parent;
+		} while (current != nullptr);
+
+		do
+		{
+			CalcModelMatrix(transformStack.top());
+			transformStack.pop();
+		} while (!transformStack.empty());
+
+	}
+	else
+	{
+		CalcModelMatrix(this);
+	}
+	
 	return model;
 }
 
@@ -67,6 +106,17 @@ void Transform::SetScale(float _x, float _y, float _z)
 	scale->x = _x;
 	scale->y = _y;
 	scale->z = _z;
+}
+
+void Transform::SetParent(Transform* _newParent)
+{
+	_newParent->chilldren.push_back(this);
+	parent = _newParent;
+}
+
+void Transform::Unparent()
+{
+	parent = nullptr;
 }
 
 }}

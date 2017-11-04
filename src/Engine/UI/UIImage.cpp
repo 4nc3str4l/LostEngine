@@ -62,7 +62,7 @@ UIImage::UIImage(const char * _texturePath, Loader * _loader, Window* _window)
 	stbi_image_free(data);
 
 	initialWindowProportion = new glm::vec2(1.0f, 1.0f);
-	transform = new Transform();
+	transform = new Transform(nullptr);
 	color = new glm::vec3(1.0f, 1.0f, 1.0f);
 }
 
@@ -92,7 +92,7 @@ UIImage::UIImage(GLuint _textureID, Loader* _loader)
 	glEnableVertexAttribArray(2);
 
 	initialWindowProportion = new glm::vec2(1.0f, 1.0f);
-	transform = new Transform();
+	transform = new Transform(nullptr);
 	color = new glm::vec3(1.0f, 1.0f, 1.0f);
 }
 

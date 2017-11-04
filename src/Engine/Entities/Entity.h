@@ -6,10 +6,11 @@
 #include "../Tools/Log.h"
 #include "../Components/Transform.h"
 
-namespace LostEngine { namespace  Entities {
-using namespace Components;
+namespace LostEngine { namespace Components {
 class Entity
 {
+public:
+	Transform* transform;
 public:
     Entity();
     ~Entity();
@@ -17,9 +18,8 @@ public:
 	Component* AddComponent(Component* _component);
 	void RemoveComponent(Component* _component);
 	std::vector<Component*>* GetComponentsOfType(GlobalType _type);
-	virtual void Tick(float _delta) = 0;
-public:
-	Transform* transform;
+	virtual void Tick(float _delta);
+
 private:
 	void DeleteComponentsOfType(GlobalType _type);
 };
