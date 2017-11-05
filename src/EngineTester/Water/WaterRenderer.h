@@ -3,6 +3,7 @@
 #include "../../Engine/Gfx/Models/RawModel.h"
 #include "../../Engine/Gfx/Utils/Loader.h"
 #include "WaterShader.h"
+#include "WaterFrameBuffer.h"
 
 using namespace LostEngine;
 using namespace Gfx;
