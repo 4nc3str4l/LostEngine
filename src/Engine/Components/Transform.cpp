@@ -20,7 +20,7 @@ Transform::~Transform()
 	delete model;
 	for (Transform* child : chilldren)
 	{
-		delete child;
+		delete child->entity;
 	}
 }
 

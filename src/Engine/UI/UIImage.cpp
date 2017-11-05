@@ -34,8 +34,8 @@ UIImage::UIImage(const char * _texturePath, Loader * _loader, Window* _window) :
 	glEnableVertexAttribArray(0);
 		
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 	
 	// load and create a texture 
 	// -------------------------
@@ -73,27 +73,28 @@ UIImage::UIImage(GLuint _textureID, Loader* _loader, Window* _window):
 {
 	m_Window = _window;
 	TextureID = _textureID;
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, TextureID));
 
 	textureWidth = 512;
 	textureHeigth = 512;
 
 	VAO = _loader->CreateVAO();
-	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &EBO);
+	GL_CHECK(glGenBuffers(1, &VBO));
+	GL_CHECK(glGenBuffers(1, &EBO));
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, VBO));
+	GL_CHECK(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO));
+	GL_CHECK(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
 
 	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
+	GL_CHECK(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0));
+	GL_CHECK(glEnableVertexAttribArray(0));
 
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(2);
+	GL_CHECK(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float))));
+	GL_CHECK(glEnableVertexAttribArray(1));
 
 	initialWindowProportion = new glm::vec2(1.0f, 1.0f);
 	transform = new Transform(nullptr);
@@ -117,11 +118,20 @@ void UIImage::Render(Shader * _shader)
 	transform->scale->x = lastScaleX;
 	transform->scale->y = lastScaleY;
 
-	// bind Texture
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, TextureID));
+	glBindVertexArray(VAO);
+	glEnableVertexAttribArray(0);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDisable(GL_DEPTH_TEST);
 
-	GL_CHECK(glBindVertexArray(VAO));
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, TextureID);
 	GL_CHECK(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+	glDisableVertexAttribArray(0);
+	glBindVertexArray(0);
 }
 
 // Do that only on window resize

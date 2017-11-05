@@ -100,13 +100,13 @@ void Window::logGPUInfo()
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    Window* win = (Window*)glfwGetWindowUserPointer(window);
+    Window* win = (Window*) glfwGetWindowUserPointer(window);
     Input::keys[key] = action != GLFW_RELEASE;
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
-    Window* win = (Window*)glfwGetWindowUserPointer(window);
+    Window* win = (Window*) glfwGetWindowUserPointer(window);
     Input::mouseButtons[button] = action != GLFW_RELEASE;
 }
 

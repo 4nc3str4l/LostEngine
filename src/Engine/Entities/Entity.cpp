@@ -32,7 +32,10 @@ Entity::~Entity()
 	DeleteComponentsOfType(GlobalType::Type_RenderComponent);
 }
 
-void Entity::Tick(float _delta){}
+void Entity::Tick(float _delta)
+{
+
+}
 
 // TODO: use templates for that
 Component* Entity::AddComponent(Component* _component)
