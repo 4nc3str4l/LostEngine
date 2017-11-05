@@ -9,8 +9,8 @@ namespace LostEngine { namespace Tools {
 		Timer();
 		void Update();
 	public:
-		float DeltaTime = 0.0f;
+		static float DeltaTime;
 	private:
-		float lastFrame = 0.0f;
+		static float lastFrame;
 	};
 }}

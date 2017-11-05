@@ -2,12 +2,15 @@
 
 namespace LostEngine {
 
+	std::string LEngine::basePath = "";
+
 	LEngine::LEngine(char* _windowTitle, bool _vSync, int _width, int _height, const std::string& base, GameLogic* _gameLogic)
 	{
 		window = new Window(_windowTitle, _width, _height, false);
 		loader = new Loader(base);
 		gameLogic = _gameLogic;
 		timer = new Timer();
+		basePath = base;
 	}
 
 	void LEngine::Start() 

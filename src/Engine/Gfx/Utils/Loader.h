@@ -40,6 +40,7 @@ public:
 	RawModel* LoadToVAO(float* positions, int dimensions, int _arraySize);
 	GLuint CreateVAO();
     GLuint LoadCubeMap(std::string* textureFiles);
+	GLuint LoadTexture(const std::string& _texturePath);
 private:
 	void StoreDataInAttributeList(int _attributeNumber, int _coordinateSize, float* _data, int _length);
 };

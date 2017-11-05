@@ -104,4 +104,37 @@ GLuint Loader::LoadCubeMap(std::string* textureFiles)
 	return textureID;
 }
 
+GLuint Loader::LoadTexture(const std::string& _texturePath)
+{
+	GLuint textureID;
+	int textureWidth;
+	int textureHeigth;
+	// load and create a texture 
+	// -------------------------
+	glGenTextures(1, &textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// set texture filtering parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// load image, create texture and generate mipmaps
+	int nrChannels;
+
+	unsigned char *data = stbi_load(_texturePath.c_str(), &textureWidth, &textureHeigth, &nrChannels, 0);
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeigth, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);
+	return textureID;
+}
+
 }}
