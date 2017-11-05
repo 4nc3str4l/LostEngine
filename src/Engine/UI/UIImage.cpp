@@ -37,7 +37,7 @@ UIImage::UIImage(const char * _texturePath, Loader * _loader, Window* _window) :
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 	
-	TextureID = _loader->LoadTexture(_texturePath);
+	TextureID = _loader->LoadTexture(_texturePath, &textureWidth, &textureHeigth);
 
 	initialWindowProportion = new glm::vec2(1.0f, 1.0f);
 	transform = new Transform(nullptr);
