@@ -11,7 +11,8 @@ set(SOURCE_FOLDERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Lights
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Models
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Utils
-    ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Skybox   
+    ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Skybox  
+    ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Particles   
 )
 
 foreach(folder ${SOURCE_FOLDERS})
