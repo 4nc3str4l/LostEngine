@@ -5,6 +5,7 @@
 #include "Gfx/Utils/Loader.h"
 #include "Tools/Timer.h"
 #include "Tools/Log.h"
+#include "Tools/FileSystem.h"
 #include <string>
 
 using namespace Logic;
@@ -23,7 +24,6 @@ public:
 	void Update(float _delta);
 	void Render();
 	void HandleInput();
-	static std::string basePath;
 private:
 	Window* window;
 	GameLogic* gameLogic;
