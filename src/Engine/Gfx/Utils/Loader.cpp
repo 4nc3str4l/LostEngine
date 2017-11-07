@@ -90,7 +90,7 @@ GLuint Loader::LoadCubeMap(std::string* textureFiles)
 		}
 		else
 		{
-			Tools::LOG::FAIL("Could not load: " + path);
+			Tools::LOG_FAIL("Could not load: " + path);
 		}
 	}
 	GL_CHECK(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR));

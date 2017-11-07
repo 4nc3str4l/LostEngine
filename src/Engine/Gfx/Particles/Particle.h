@@ -1,5 +1,4 @@
 #pragma once
-#include "../Utils/glad.h"
 #include <glm/glm.hpp>
 
 namespace LostEngine { namespace Gfx {
@@ -12,12 +11,12 @@ public:
     ~Particle();
     bool Tick();
 public:
-    vec3* position;
+    vec3 *position;
     float rotation;
     float scale;
 private:
-    vec3* m_velocity;
-    vec3* m_instantVelocity;
+    vec3 *m_velocity;
+    vec3 *m_instantVelocity;
     float m_gravityEffect;
     float m_lifeLength;
     

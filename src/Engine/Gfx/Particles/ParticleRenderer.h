@@ -7,7 +7,7 @@ namespace LostEngine { namespace Gfx {
 
 class ParticleRenderer
 {
-    
+	
 };
 
 }}

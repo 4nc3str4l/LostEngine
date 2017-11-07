@@ -1,9 +1,10 @@
 #pragma once
 
+#include "../Utils/Shader.h"
 
 namespace LostEngine { namespace Gfx {
     
-class ParticleShader
+class ParticleShader : public Shader
 {
     
 };

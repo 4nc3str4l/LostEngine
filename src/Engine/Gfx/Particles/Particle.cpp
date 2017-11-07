@@ -1,5 +1,6 @@
 #include "Particle.h"
-#include "../../Tools/Timer.h"
+#include "../../LostEngine.h"
+
 namespace LostEngine { namespace Gfx {
 Particle::Particle(vec3* _pos, vec3* _vel, float _grav, float _life, float _rotation, float _scale)
 {
@@ -16,15 +17,16 @@ Particle::Particle(vec3* _pos, vec3* _vel, float _grav, float _life, float _rota
 
 Particle::~Particle()
 {
-    delete m_position;
-    delete m_velocity;
+	delete position;
+	delete m_velocity;
+	delete m_instantVelocity;
 }
 
 bool Particle::Tick()
 {
-    m_velocity.y = -9.8 * m_gravityEffect * Timer::DeltaTime;
-    m_instantVelocity = m_velocity * Timer::DeltaTime;
-    position += m_instantVelocity;
+    m_velocity->y = -9.8 * m_gravityEffect * Timer::DeltaTime;
+    *m_instantVelocity = *m_velocity * Timer::DeltaTime;
+	*position += *m_instantVelocity;
     m_elapsedTime += Timer::DeltaTime;
     return m_elapsedTime < m_lifeLength;
 }

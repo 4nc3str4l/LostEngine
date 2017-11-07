@@ -13,22 +13,21 @@ namespace LostEngine {
 
 	void LEngine::Start() 
 	{
-
-		LOG::SPECIAL("############################################");
-		LOG::SPECIAL("            LOST ENGINE V.0.1a");
-		LOG::SPECIAL("############################################");
-		
-		LOG::INFO("Init Input");
+		LOG_SPECIAL("MANDANGA", "PUTA", "CACA", 12, 22);
+		LOG_SPECIAL("############################################");
+		LOG_SPECIAL("            LOST ENGINE V.0.1a");
+		LOG_SPECIAL("############################################");
+		LOG_INFO("Init Input");
 		Input::Initialize();
-		LOG::CORRECT("Init Input Correct!");
+		LOG_CORRECT("Init Input Correct!");
 		
-		LOG::INFO("Init Graphics");
+		LOG_INFO("Init Graphics");
 		window->Init();
-		LOG::CORRECT("Init Graphics Correct!");
+		LOG_CORRECT("Init Graphics Correct!");
 		
-		LOG::INFO("Init Game Logic");
+		LOG_INFO("Init Game Logic");
 		gameLogic->Init(window, loader);
-		LOG::CORRECT("Init Game Logic Correct!");
+		LOG_CORRECT("Init Game Logic Correct!");
 
 		Run();
 	}
@@ -83,7 +82,7 @@ namespace LostEngine {
 		delete gameLogic;
 		delete timer;
 
-		LOG::CORRECT("Clean Complete!");
+		LOG_CORRECT("Clean Complete!");
 	}
 }
 

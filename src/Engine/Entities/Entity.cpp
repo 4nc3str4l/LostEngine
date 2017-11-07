@@ -2,6 +2,8 @@
 
 namespace LostEngine { namespace Components {
 
+using namespace Tools;
+
 Entity::Entity()
 {
 	m_components = new std::map<GlobalType, std::vector<Component*>*>();
@@ -65,7 +67,7 @@ void Entity::RemoveComponent(Component* _component)
 			}
 		}
 	}
-	Tools::LOG::FAIL("Component With ID: " + std::to_string(_component->id) + " Not found!");
+	LOG_FAIL("Component With ID: " + std::to_string(_component->id) + " Not found!");
 }
 
 std::vector<Component*>* Entity::GetComponentsOfType(GlobalType _type)
