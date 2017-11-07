@@ -24,3 +24,15 @@ private:
 	void DeleteComponentsOfType(GlobalType _type);
 };
 }}
+
+/*
+	TODO: GetComponent<>();
+	template <typename T> struct Map{}
+	template <> struct Map<Camera>{ const static int value = 0; };
+	template <> struct Map<Player> { const static int value = 1; }
+	template <typename T>
+	T get() {
+	...
+	}
+	int idx = Map<T>::value;
+*/

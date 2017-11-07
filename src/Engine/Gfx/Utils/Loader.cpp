@@ -5,6 +5,8 @@
 
 namespace LostEngine { namespace Gfx {
 
+using namespace Tools;
+
 Loader::Loader(const std::string& _basePath)
 {
 	basePath = new std::string(_basePath);
@@ -90,7 +92,7 @@ GLuint Loader::LoadCubeMap(std::string* textureFiles)
 		}
 		else
 		{
-			Tools::LOG_FAIL("Could not load: " + path);
+			LOG_FAIL("Could not load: " + path);
 		}
 	}
 	GL_CHECK(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR));

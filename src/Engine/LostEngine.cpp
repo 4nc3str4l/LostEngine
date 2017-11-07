@@ -13,9 +13,8 @@ namespace LostEngine {
 
 	void LEngine::Start() 
 	{
-		LOG_SPECIAL("MANDANGA", "PUTA", "CACA", 12, 22);
 		LOG_SPECIAL("############################################");
-		LOG_SPECIAL("            LOST ENGINE V.0.1a");
+		LOG_SPECIAL("            LOST ENGINE ", ENGINE_VERSION);
 		LOG_SPECIAL("############################################");
 		LOG_INFO("Init Input");
 		Input::Initialize();
