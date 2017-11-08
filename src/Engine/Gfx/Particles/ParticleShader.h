@@ -6,7 +6,8 @@ namespace LostEngine { namespace Gfx {
     
 class ParticleShader : public Shader
 {
-    
+public:
+	ParticleShader();
 };
 
 }}

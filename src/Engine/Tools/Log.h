@@ -60,5 +60,4 @@ static void EndLog()
 #define LOG_CORRECT(...) SetLogType(ENGINE_CORRECT_COLOR); MESSAGE(__VA_ARGS__); EndLog()
 #define LOG_MESSAGE(...) SetLogType(ENGINE_REGULAR_COLOR); MESSAGE(__VA_ARGS__); EndLog()
 #define LOG_FAIL(...) SetLogType(ENGINE_ERROR_COLOR); MESSAGE(__VA_ARGS__); EndLog()
-
 }}

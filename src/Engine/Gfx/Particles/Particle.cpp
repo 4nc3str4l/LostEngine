@@ -1,5 +1,6 @@
 #include "Particle.h"
 #include "../../LostEngine.h"
+#include "ParticleMaster.h"
 
 namespace LostEngine { namespace Gfx {
 Particle::Particle(vec3* _pos, vec3* _vel, float _grav, float _life, float _rotation, float _scale)
@@ -13,6 +14,8 @@ Particle::Particle(vec3* _pos, vec3* _vel, float _grav, float _life, float _rota
     
     m_elapsedTime = 0.0f;
     m_instantVelocity = new vec3();
+
+	ParticleMaster::AddParticle(this); 
 }
 
 Particle::~Particle()
@@ -24,7 +27,7 @@ Particle::~Particle()
 
 bool Particle::Tick()
 {
-    m_velocity->y = -9.8 * m_gravityEffect * Timer::DeltaTime;
+    m_velocity->y += -9.8 * m_gravityEffect * Timer::DeltaTime;
     *m_instantVelocity = *m_velocity * Timer::DeltaTime;
 	*position += *m_instantVelocity;
     m_elapsedTime += Timer::DeltaTime;
