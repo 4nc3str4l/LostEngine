@@ -51,15 +51,23 @@ namespace LostEngine { namespace Gfx {
 
 	}
 
-	void ParticleRenderer::Render(std::vector<Particle*>* _particles, Camera* _camera)
+	void ParticleRenderer::Render(std::map<ParticleTexture*, std::vector<Particle*>*>* _particles, Camera* _camera)
 	{
 		glm::mat4 viewMatrix = _camera->GetViewMatrix();
 		Prepare();
-		for (Particle* particle : *_particles)
+		for (auto keyVal : *_particles)
 		{
-			UpdateModelViewMatrix(particle->position, particle->rotation, particle->scale, viewMatrix);
-			glDrawArrays(GL_TRIANGLE_STRIP, 0, quad_->VertexCount);
+			ParticleTexture* tex = keyVal.first;
+			std::vector<Particle*>* particleList = keyVal.second;
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, tex->textureID);
+			for (Particle* particle : *particleList)
+			{
+				UpdateModelViewMatrix(particle->position, particle->rotation, particle->scale, viewMatrix);
+				glDrawArrays(GL_TRIANGLE_STRIP, 0, quad_->VertexCount);
+			}
 		}
+
 		FinnishRendering();
 	}
 	

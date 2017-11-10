@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <map>
 #include <glm/glm.hpp>
 
 #include "../Models/RawModel.h"
@@ -16,7 +17,7 @@ class ParticleRenderer
 public:
 	ParticleRenderer(Loader *_loader, const glm::mat4 &_projectionMatrix);
 	virtual ~ParticleRenderer();
-	void Render(std::vector<Particle*>* _particles, Camera* _camera);
+	void Render(std::map<ParticleTexture*, std::vector<Particle*>*>* _particles, Camera* _camera);
 private:
 	void Prepare();
 	void UpdateModelViewMatrix(glm::vec3* _position, float _rotation, float _scale, const glm::mat4& viewMatrix);

@@ -6,7 +6,7 @@
 #include "Particle.h"
 #include "../../Components/Transform.h"
 
-namespace LostEngine {  namespace Gfx {
+namespace LostEngine { namespace Gfx {
 class ParticleSystem
 {
 public:

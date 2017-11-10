@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include <vector>
 #include "Particle.h"
 #include "ParticleRenderer.h"
@@ -16,7 +17,7 @@ public:
 	static void AddParticle(Particle* _particle);
 	static void Dispose();
 private:
-	static std::vector<Particle*>* particles;
+	static std::map<ParticleTexture*, std::vector<Particle*>*>* m_particles;
 	static ParticleRenderer* renderer;
 };
 
