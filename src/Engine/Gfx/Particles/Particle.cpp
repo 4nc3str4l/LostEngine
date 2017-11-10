@@ -3,8 +3,9 @@
 #include "ParticleMaster.h"
 
 namespace LostEngine { namespace Gfx {
-Particle::Particle(vec3* _pos, vec3* _vel, float _grav, float _life, float _rotation, float _scale)
+Particle::Particle(ParticleTexture* _texture, vec3* _pos, vec3* _vel, float _grav, float _life, float _rotation, float _scale)
 {
+	texture = _texture;
     position = _pos;
     rotation = _rotation;
     scale = _scale;

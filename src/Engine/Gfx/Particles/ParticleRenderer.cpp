@@ -1,7 +1,7 @@
 #include "ParticleRenderer.h"
 
 namespace LostEngine { namespace Gfx {
-	
+    
 	float ParticleRenderer::vertices[8]{ -0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f, -0.5f };
 
 	ParticleRenderer::ParticleRenderer(Loader * _loader, const glm::mat4& _projectionMatrix)
