@@ -35,7 +35,6 @@ void Loader::StoreDataInAttributeList(int _attributeNumber, int _coordinateSize,
 {
 	GLuint vboID;
     GL_CHECK(glGenBuffers(1, &vboID));
-
 	vbos.push_back(vboID);
     GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, vboID));
     GL_CHECK(glBufferData(GL_ARRAY_BUFFER, sizeof(float) * _length, &_data[0], GL_STATIC_DRAW));
@@ -127,11 +126,26 @@ GLuint Loader::LoadTexture(const std::string& _texturePath, int* _width, int* _h
 
 	// load image, create texture and generate mipmaps
 	int nrChannels;
+	unsigned char *data = nullptr;
 
-	unsigned char *data = stbi_load(_texturePath.c_str(), &w, &h, &nrChannels, 0);
+	if (_texturePath.find(".png") != std::string::npos)
+	{
+		data = stbi_load(_texturePath.c_str(), &w, &h, &nrChannels, STBI_rgb_alpha);
+	}
+	else
+	{
+		data = stbi_load(_texturePath.c_str(), &w, &h, &nrChannels, STBI_rgb);
+	}
 	if (data)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		if (_texturePath.find(".png") != std::string::npos) 
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		}
+		else
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		}
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else

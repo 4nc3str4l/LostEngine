@@ -10,7 +10,7 @@ void ParticleMaster::Init(Loader * _loader, const glm::mat4 & _projectionMatrix)
 	renderer = new ParticleRenderer(_loader, _projectionMatrix);
 }
 
-void ParticleMaster::Tick()
+void ParticleMaster::Tick(Camera* _camera)
 {
 	for (std::map<ParticleTexture*, std::vector<Particle*>*>::iterator it = m_particles->begin(); it != m_particles->end(); it++)
 	{
@@ -19,7 +19,7 @@ void ParticleMaster::Tick()
 		for (int i = vec->size() - 1; i >= 0; i--)
 		{
 			Particle* p = vec->at(i);
-			if (!p->Tick())
+			if (!p->Tick(_camera))
 			{
 				delete p;
 				vec->erase(vec->begin() + i);
@@ -30,6 +30,8 @@ void ParticleMaster::Tick()
 				}
 			}
 		}
+		// Sort particles by distance
+		InsertionSort(vec);
 	}
 }
 
@@ -70,6 +72,24 @@ void ParticleMaster::Dispose()
 
 	delete renderer;
 	delete m_particles;
+}
+
+void ParticleMaster::InsertionSort(std::vector<Particle*>* _data)
+{
+	int j;
+	Particle *val;
+
+	for (int i = 1; i < _data->size(); i++) {
+		val = _data->at(i);
+		j = i - 1;
+
+		while (j >= 0 && _data->at(j)->distance > val->distance) {
+			_data->at(j + 1) = _data->at(j);
+			j = j - 1;
+		}
+		_data->at(j + 1) = val;
+	}
+
 }
 
 }}

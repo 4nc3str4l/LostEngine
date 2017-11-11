@@ -24,7 +24,6 @@ namespace LostEngine { namespace Gfx {
 		glBindVertexArray(quad_->VaoID);
 		glEnableVertexAttribArray(0);
 		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glDepthMask(GL_FALSE);
 	}
 
@@ -59,11 +58,20 @@ namespace LostEngine { namespace Gfx {
 		{
 			ParticleTexture* tex = keyVal.first;
 			std::vector<Particle*>* particleList = keyVal.second;
+
+			if (tex->usesAdditiveBlending) {
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+			}
+			else {
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			}
+
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, tex->textureID);
 			for (Particle* particle : *particleList)
 			{
 				UpdateModelViewMatrix(particle->position, particle->rotation, particle->scale, viewMatrix);
+				shader_->LoadTextureCoordInfo(*particle->texOffset1, *particle->texOffset2, particle->texture->numberOfRows, particle->blend);
 				glDrawArrays(GL_TRIANGLE_STRIP, 0, quad_->VertexCount);
 			}
 		}

@@ -7,4 +7,13 @@ namespace LostEngine { namespace Gfx {
 	{
 			
 	}
+
+	void ParticleShader::LoadTextureCoordInfo(const glm::vec2& _offset1, glm::vec2& _offset2, float _numRows, float _blend)
+	{
+		SetVec2("texOffset1", _offset1);
+		SetVec2("texOffset2", _offset2);
+		SetVec2("texCoordInfo", glm::vec2(_numRows, _blend));
+	}
+
+
 }}
