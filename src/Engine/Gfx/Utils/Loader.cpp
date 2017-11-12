@@ -31,6 +31,7 @@ Loader::~Loader()
 	delete basePath;
 }
 
+
 void Loader::StoreDataInAttributeList(int _attributeNumber, int _coordinateSize, float* _data, int _length)
 {
 	GLuint vboID;
@@ -154,6 +155,37 @@ GLuint Loader::LoadTexture(const std::string& _texturePath, int* _width, int* _h
 	}
 	stbi_image_free(data);
 	return textureID;
+}
+
+GLuint Loader::CreateEmptyVBO(int maxNumOfFloats)
+{
+	GLuint VBO;
+	glGenBuffers(1, &VBO);
+	vbos.push_back(VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	//HACK: Not sure of GL_NONE
+	glBufferData(GL_ARRAY_BUFFER, maxNumOfFloats * sizeof(float), GL_NONE,  GL_STREAM_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	return VBO;
+}
+
+void Loader::AddInstancedAttributes(int _vao, int _vbo, int _attribute, int _dataSize, int _instancedDataLength, int _offset)
+{
+	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	glBindVertexArray(_vao);
+	glVertexAttribPointer(_attribute, _dataSize, GL_FLOAT, GL_FALSE, _instancedDataLength * 4, (void*)(_offset * 4));
+	glVertexAttribDivisor(_attribute, 1);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+}
+
+void Loader::UpdateVBO(GLuint _vbo, float* _data, int dataLength)
+{
+	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	glBufferData(GL_ARRAY_BUFFER, dataLength * sizeof(float), GL_NONE, GL_STREAM_DRAW);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, dataLength * 4,  _data);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 }
 
 }}

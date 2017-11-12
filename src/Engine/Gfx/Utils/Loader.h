@@ -41,6 +41,9 @@ public:
 	GLuint CreateVAO();
     GLuint LoadCubeMap(std::string* textureFiles);
 	GLuint LoadTexture(const std::string& _texturePath, int* _width = nullptr, int* _heigth = nullptr);
+	GLuint CreateEmptyVBO(int maxNumOfFloats);
+	void AddInstancedAttributes(int _vao, int _vbo, int _attribute, int _dataSize, int _instancedDataLength, int _offset);
+	void UpdateVBO(GLuint _vbo, float* _data , int dataLength);
 private:
 	void StoreDataInAttributeList(int _attributeNumber, int _coordinateSize, float* _data, int _length);
 };

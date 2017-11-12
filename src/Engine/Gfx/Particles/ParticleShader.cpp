@@ -15,5 +15,13 @@ namespace LostEngine { namespace Gfx {
 		SetVec2("texCoordInfo", glm::vec2(_numRows, _blend));
 	}
 
+	void ParticleShader::BindAttributes()
+	{
+		BindAttribute("position", 0);
+		BindAttribute("modelViewMatrix", 1);
+		BindAttribute("texOffsets", 5);
+		BindAttribute("blendFactor", 6);
+	}
+
 
 }}
