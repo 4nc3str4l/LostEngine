@@ -3,22 +3,12 @@
 #include "ParticleMaster.h"
 
 namespace LostEngine { namespace Gfx {
-Particle::Particle(ParticleTexture* _texture, vec3* _pos, vec3* _vel, float _grav, float _life, float _rotation, float _scale)
+
+Particle::Particle()
 {
-	texture = _texture;
-    position = _pos;
-    rotation = _rotation;
-    scale = _scale;
-    m_velocity = _vel;
-    m_gravityEffect = _grav;
-    m_lifeLength = _life; 
-    
-    m_elapsedTime = 0.0f;
 	texOffset1 = new vec2();
 	texOffset2 = new vec2();
     m_instantVelocity = new vec3();
-
-	ParticleMaster::AddParticle(this); 
 }
 
 void Particle::SetParticle(ParticleTexture * _texture, vec3 * _pos, vec3 * _vel, float _grav, float _life, float _rotation, float _scale)

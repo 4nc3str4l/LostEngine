@@ -1,4 +1,5 @@
 #include "ParticleMaster.h"
+#include "ParticleFactory.h"
 
 namespace LostEngine { namespace Gfx {
 
@@ -7,6 +8,7 @@ ParticleRenderer* ParticleMaster::renderer = nullptr;
 
 void ParticleMaster::Init(Loader * _loader, const glm::mat4 & _projectionMatrix)
 {
+	ParticleFactory::Initialize();
 	renderer = new ParticleRenderer(_loader, _projectionMatrix);
 }
 
@@ -21,7 +23,7 @@ void ParticleMaster::Tick(Camera* _camera)
 			Particle* p = vec->at(i);
 			if (!p->Tick(_camera))
 			{
-				delete p;
+				ParticleFactory::RefundParticle(p);
 				vec->erase(vec->begin() + i);
 				if (vec->size() == 0)
 				{
@@ -65,12 +67,13 @@ void ParticleMaster::Dispose()
 		for (int i = particleList->size() - 1; i >= 0; i--)
 		{
 			Particle* p = particleList->at(i);
-			delete p;
+			ParticleFactory::RefundParticle(p);
 			particleList->erase(particleList->begin() + i);
 		}
 		delete particleList;
 	}
 
+	ParticleFactory::Dispose();
 	delete renderer;
 	delete m_particles;
 }

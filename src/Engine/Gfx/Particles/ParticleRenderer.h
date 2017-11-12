@@ -15,8 +15,6 @@ namespace LostEngine { namespace Gfx {
 class ParticleRenderer
 {
 public:
-
-
 	ParticleRenderer(Loader *_loader, const glm::mat4 &_projectionMatrix);
 	virtual ~ParticleRenderer();
 	void Render(std::map<ParticleTexture*, std::vector<Particle*>*>* _particles, Camera* _camera);

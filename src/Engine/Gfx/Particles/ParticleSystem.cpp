@@ -3,6 +3,7 @@
 #include <math.h>
 #include "../../Tools/Timer.h"
 #include "../../Tools/Maths.h"
+#include "ParticleFactory.h"
 
 namespace LostEngine { namespace Gfx {
 using namespace Tools;
@@ -84,7 +85,7 @@ void ParticleSystem::EmitParticle(glm::vec3* _center)
 	(*velocity) *= GenerateValue(m_averageSpeed, m_speedError);
 	float scale = GenerateValue(m_averageScale, m_scaleError);
 	float lifeLength = GenerateValue(m_averageLifeLength, m_lifeError);
-	new Particle(m_particleTexture, new glm::vec3(*_center), velocity, m_gravityComplient, lifeLength, GenerateRotation(), scale);
+	ParticleFactory::CreateParticle()->SetParticle(m_particleTexture, new glm::vec3(*_center), velocity, m_gravityComplient, lifeLength, GenerateRotation(), scale);
 }
 
 float ParticleSystem::GenerateValue(float _average, float _errorMargin)

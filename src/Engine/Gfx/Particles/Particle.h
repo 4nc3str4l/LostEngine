@@ -10,6 +10,7 @@ using namespace glm;
 class Particle
 {
 public:
+    Particle();
     Particle(ParticleTexture* _texture, vec3* _pos, vec3* _vel, float _grav, float _life, float _rotation, float _scale);
 	~Particle();
     bool Tick(Camera* _camera);
