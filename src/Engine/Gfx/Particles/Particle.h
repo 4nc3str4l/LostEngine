@@ -11,8 +11,9 @@ class Particle
 {
 public:
     Particle(ParticleTexture* _texture, vec3* _pos, vec3* _vel, float _grav, float _life, float _rotation, float _scale);
-    ~Particle();
+	~Particle();
     bool Tick(Camera* _camera);
+	void SetParticle(ParticleTexture* _texture, vec3* _pos, vec3* _vel, float _grav, float _life, float _rotation, float _scale);
 private:
 	void UpdateTextureCoordInfo();
 	void SetTextureOffset(vec2* _offset, int _index);

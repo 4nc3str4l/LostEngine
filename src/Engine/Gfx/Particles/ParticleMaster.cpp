@@ -31,7 +31,8 @@ void ParticleMaster::Tick(Camera* _camera)
 			}
 		}
 		// Sort particles by distance
-		InsertionSort(vec);
+		if(!tex->usesAdditiveBlending)
+			InsertionSort(vec);
 	}
 }
 
