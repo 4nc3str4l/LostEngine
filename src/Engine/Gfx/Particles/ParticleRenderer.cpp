@@ -2,7 +2,7 @@
 
 namespace LostEngine { namespace Gfx {
     
-	const int MAX_INSTANCES =  30000;
+	const int MAX_INSTANCES =  70000;
 	const int INSTANCE_DATA_LENGTH = 21;
 
 	float ParticleRenderer::m_vertices[8]{ -0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f, -0.5f };
@@ -25,7 +25,7 @@ namespace LostEngine { namespace Gfx {
 
 		m_shader = new ParticleShader();
 		m_shader->Use();
-		m_shader->SetMat4("projectionMatrix", _projectionMatrix);
+		m_shader->SetProjectionMatrix(_projectionMatrix);
 	}
 	
 	ParticleRenderer::~ParticleRenderer()
@@ -139,7 +139,7 @@ namespace LostEngine { namespace Gfx {
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, _particleTexture->textureID);
-		m_shader->SetFloat("numberOfRows", _particleTexture->numberOfRows);
+		m_shader->SetNumberOfRows(_particleTexture->numberOfRows);
 	}
 
 	void ParticleRenderer::FinnishRendering()

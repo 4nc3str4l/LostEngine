@@ -1,25 +1,29 @@
 #include "SkyboxShader.h"
 
+#include "../../Tools/FileSystem.h"
+
 namespace LostEngine { namespace Gfx {
    
-	SkyboxShader::SkyboxShader(const std::string& base)
+	SkyboxShader::SkyboxShader()
+		:Shader((Tools::FileSystem::basePath + "./resources/shaders/skybox.vs").c_str(), 
+		(Tools::FileSystem::basePath + "./resources/shaders/skybox.fs").c_str())
 	{
-		shader = new Shader((base + "./resources/shaders/skybox.vs").c_str(), (base + "./resources/shaders/skybox.fs").c_str());
+		m_projectionMatrix = glGetUniformLocation(ID, "projectionMatrix");
+		m_viewMatrix = glGetUniformLocation(ID, "viewMatrix");
 	}
 
 	SkyboxShader::~SkyboxShader()
 	{
-		delete shader;
 	}
 
 	void SkyboxShader::BindAttributes()
 	{
-		shader->BindAttribute("position", 0);
+		BindAttribute("position", 0);
 	}
 
 	void SkyboxShader::LoadProjectionMatrix(const glm::mat4& _projectionMatrix)
 	{
-		shader->SetMat4("projectionMatrix", _projectionMatrix);
+		SetMat4(m_projectionMatrix, _projectionMatrix);
 	}
 
 	void SkyboxShader::LoadViewMatrix(const glm::mat4& _viewMatrix)
@@ -28,6 +32,6 @@ namespace LostEngine { namespace Gfx {
 		new_view[3][0] = 0.0f;
 		new_view[3][1] = 0.0f;
 		new_view[3][2] = 0.0f;
-		shader->SetMat4("viewMatrix", new_view);
+		SetMat4(m_viewMatrix, new_view);
 	}
 }}

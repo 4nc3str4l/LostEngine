@@ -3,18 +3,17 @@
 #include <string>
 
 namespace LostEngine { namespace Gfx{
-	class SkyboxShader
+	class SkyboxShader : public Shader
 	{
 	public:
-		SkyboxShader(const std::string& base);
+		SkyboxShader();
 		~SkyboxShader();
 		void BindAttributes();
 		void LoadProjectionMatrix(const glm::mat4& _projectionMatrix);
 		void LoadViewMatrix(const glm::mat4& _viewMatrix);
-
-	public:
-		Shader* shader;
 	private:
+		GLuint m_projectionMatrix;
+		GLuint m_viewMatrix;
 
 	};
 }}

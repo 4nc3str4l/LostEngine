@@ -93,77 +93,137 @@ namespace LostEngine { namespace Gfx {
 
 	void Shader::Use() 
 	{
-        GL_CHECK(glUseProgram(ID));
+        glUseProgram(ID);
 	}
 
 	void Shader::SetBool(const std::string &name, bool value) const
 	{
-        GL_CHECK(glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value));
+        glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
 	}
 	
 	void Shader::SetInt(const std::string &name, int value) const
 	{
-        GL_CHECK(glUniform1i(glGetUniformLocation(ID, name.c_str()), value));
+        glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
 	}
 	
 	void Shader::SetFloat(const std::string &name, float value) const
 	{
-        GL_CHECK(glUniform1f(glGetUniformLocation(ID, name.c_str()), value));
+        glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 	}
 	
 	void Shader::SetVec2(const std::string &name, const glm::vec2 &value) const
 	{
-        GL_CHECK(glUniform2fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]));
+        glUniform2fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
 	}
 	
 	void Shader::SetVec2(const std::string &name, float x, float y) const
 	{
-        GL_CHECK(glUniform2f(glGetUniformLocation(ID, name.c_str()), x, y));
+        glUniform2f(glGetUniformLocation(ID, name.c_str()), x, y);
 	}
 	
 	void Shader::SetVec3(const std::string &name, const glm::vec3 &value) const
 	{
-        GL_CHECK(glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]));
+        glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
 	}
 	
 	void Shader::SetVec3(const std::string &name, glm::vec3 &value) const
 	{
-        GL_CHECK(glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]));
+        glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
 	}
 	
 	void Shader::SetVec3(const std::string &name, float x, float y, float z) const
 	{
-        GL_CHECK(glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z));
+       glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
 	}
 	
 	void Shader::SetVec4(const std::string &name, const glm::vec4 &value) const
 	{
-        GL_CHECK(glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]));
+        glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
 	}
 	
 	void Shader::SetVec4(const std::string &name, float x, float y, float z, float w)
 	{
-        GL_CHECK(glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w));
+        glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
 	}
 	
 	void Shader::SetMat2(const std::string &name, const glm::mat2 &mat) const
 	{
-        GL_CHECK(glUniformMatrix2fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]));
+        glUniformMatrix2fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 	}
 	
 	void Shader::SetMat3(const std::string &name, const glm::mat3 &mat) const
 	{
-        GL_CHECK(glUniformMatrix3fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]));
+        glUniformMatrix3fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 	}
 	
 	void Shader::SetMat4(const std::string &name, const glm::mat4 &mat) const
 	{
-        GL_CHECK(glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]));
+        glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+	}
+
+	void Shader::SetBool(GLuint _location, bool value) const
+	{
+		glUniform1i(_location, (int)value);
+	}
+
+	void Shader::SetInt(GLuint _location, int value) const
+	{
+		glUniform1i(_location, value);
+	}
+
+	void Shader::SetFloat(GLuint _location, float value) const
+	{
+		glUniform1f(_location, value);
+	}
+
+	void Shader::SetVec2(GLuint _location, const glm::vec2 & value) const
+	{
+		glUniform2fv(_location, 1, &value[0]);
+	}
+
+	void Shader::SetVec2(GLuint _location, float x, float y) const
+	{
+		glUniform2f(_location, x, y);
+	}
+
+	void Shader::SetVec3(GLuint _location, const glm::vec3 & value) const
+	{
+		glUniform3fv(_location, 1, &value[0]);
+	}
+
+	void Shader::SetVec3(GLuint _location, float x, float y, float z) const
+	{
+		glUniform3f(_location, x, y, z);
+	}
+
+	void Shader::SetVec4(GLuint _location, const glm::vec4 & value) const
+	{
+		glUniform4fv(_location, 1, &value[0]);
+	}
+
+	void Shader::SetVec4(GLuint _location, float x, float y, float z, float w)
+	{
+		glUniform4f(_location, x, y, z, w);
+	}
+
+	void Shader::SetMat2(GLuint _location, const glm::mat2 & mat) const
+	{
+		glUniformMatrix2fv(_location, 1, GL_FALSE, &mat[0][0]);
+	}
+
+	void Shader::SetMat3(GLuint _location, const glm::mat3 & mat) const
+	{
+		glUniformMatrix3fv(_location, 1, GL_FALSE, &mat[0][0]);
+	}
+
+	void Shader::SetMat4(GLuint _location, const glm::mat4 & mat) const
+	{
+		glUniformMatrix4fv(_location, 1, GL_FALSE, &mat[0][0]);
 	}
 
 	void Shader::BindAttribute(const std::string &_name, const int _attribute) const
 	{
-        GL_CHECK(glBindAttribLocation(ID, _attribute, _name.c_str()));
+        glBindAttribLocation(ID, _attribute, _name.c_str());
 	}
 
 	void Shader::CheckCompileErrors(GLuint shader, std::string type)
@@ -172,19 +232,19 @@ namespace LostEngine { namespace Gfx {
 		GLchar infoLog[1024];
 		if (type != "PROGRAM")
 		{
-            GL_CHECK(glGetShaderiv(shader, GL_COMPILE_STATUS, &success));
+            glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 			if (!success)
 			{
-                GL_CHECK(glGetShaderInfoLog(shader, 1024, NULL, infoLog));
+                glGetShaderInfoLog(shader, 1024, NULL, infoLog);
 				std::cout << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
 			}
 		}
 		else
 		{
-            GL_CHECK(glGetProgramiv(shader, GL_LINK_STATUS, &success));
+            glGetProgramiv(shader, GL_LINK_STATUS, &success);
 			if (!success)
 			{
-                GL_CHECK(glGetProgramInfoLog(shader, 1024, NULL, infoLog));
+                glGetProgramInfoLog(shader, 1024, NULL, infoLog);
 				std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
 			}
 		}

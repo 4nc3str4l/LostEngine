@@ -4,7 +4,7 @@ namespace LostEngine { namespace Gfx {
 
 Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
 {
-	Position = position;
+	Position = new glm::vec3(position);
 	WorldUp = up;
 	Yaw = yaw;
 	Pitch = pitch;
@@ -13,7 +13,7 @@ Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) : Front
 		
 Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
 {
-	Position = glm::vec3(posX, posY, posZ);
+	Position = new glm::vec3(posX, posY, posZ);
 	WorldUp = glm::vec3(upX, upY, upZ);
 	Yaw = yaw;
 	Pitch = pitch;
@@ -22,7 +22,7 @@ Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float u
 
 glm::mat4 Camera::GetViewMatrix()
 {
-	return glm::lookAt(Position, Position + Front, Up);
+	return glm::lookAt(*Position, *Position + Front, Up);
 }
 
 void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
@@ -35,13 +35,13 @@ void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 	}
 
 	if (direction == FORWARD)
-		Position += Front * velocity;
+		*Position += Front * velocity;
 	if (direction == BACKWARD)
-		Position -= Front * velocity;
+		*Position -= Front * velocity;
 	if (direction == LEFT)
-		Position -= Right * velocity;
+		*Position -= Right * velocity;
 	if (direction == RIGHT)
-		Position += Right * velocity;
+		*Position += Right * velocity;
 }
 
 void Camera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
@@ -83,6 +83,11 @@ void Camera::updateCameraVectors()
 	
 	Right = glm::normalize(glm::cross(Front, WorldUp));
 	Up = glm::normalize(glm::cross(Right, Front));
+}
+
+Camera::~Camera()
+{
+	delete Position; 
 }
 
 }}

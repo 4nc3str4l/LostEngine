@@ -60,8 +60,8 @@ namespace LostEngine { namespace Gfx {
 	{
 		cube = _loader->LoadToVAO(skybox_vertices, 3, 108);
 		texture = _loader->LoadCubeMap(skyboxNames);
-		skyboxShader = new SkyboxShader(base);
-		skyboxShader->shader->Use();
+		skyboxShader = new SkyboxShader();
+		skyboxShader->Use();
 		skyboxShader->LoadProjectionMatrix(_projectionMatrix);
 	}
 
@@ -73,7 +73,7 @@ namespace LostEngine { namespace Gfx {
 
 	void SkyboxRenderer::Render(Camera* _camera, Window* _window, const glm::mat4& _projection)
 	{
-		skyboxShader->shader->Use();
+		skyboxShader->Use();
 		skyboxShader->LoadViewMatrix(_camera->GetViewMatrix());
 		glBindVertexArray(cube->VaoID);
 		glEnableVertexAttribArray(0);

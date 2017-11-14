@@ -3,7 +3,7 @@
 
 namespace LostEngine { namespace Gfx {
     
-    const int INITIAL_STOCK = 10000;
+    const int INITIAL_STOCK = 200000;
 	std::vector<Particle*>* ParticleFactory::avaliableParticles = new std::vector<Particle*>();
     void ParticleFactory::Initialize()
     {

@@ -85,7 +85,9 @@ void ParticleSystem::EmitParticle(glm::vec3* _center)
 	(*velocity) *= GenerateValue(m_averageSpeed, m_speedError);
 	float scale = GenerateValue(m_averageScale, m_scaleError);
 	float lifeLength = GenerateValue(m_averageLifeLength, m_lifeError);
-	ParticleFactory::CreateParticle()->SetParticle(m_particleTexture, new glm::vec3(*_center), velocity, m_gravityComplient, lifeLength, GenerateRotation(), scale);
+	ParticleFactory::CreateParticle()->SetParticle(m_particleTexture, _center->x, _center->y, _center->z, velocity->x, velocity->y, velocity->z, m_gravityComplient, lifeLength, GenerateRotation(), scale);
+	//TODO: Found LEAK, I'm sure that I can manage to handle this in a propper way
+	delete velocity;
 }
 
 float ParticleSystem::GenerateValue(float _average, float _errorMargin)

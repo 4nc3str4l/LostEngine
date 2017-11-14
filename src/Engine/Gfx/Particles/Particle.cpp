@@ -9,15 +9,23 @@ Particle::Particle()
 	texOffset1 = new vec2();
 	texOffset2 = new vec2();
     m_instantVelocity = new vec3();
+	position = new vec3();
+	m_velocity = new vec3();
 }
 
-void Particle::SetParticle(ParticleTexture * _texture, vec3 * _pos, vec3 * _vel, float _grav, float _life, float _rotation, float _scale)
+void Particle::SetParticle(ParticleTexture * _texture, float posX, float posY, float posZ, float vX, float vY, float vZ, float _grav, float _life, float _rotation, float _scale)
 {
 	texture = _texture;
-	position = _pos;
+	position->x = posX;
+	position->y = posY;
+	position->z = posZ;
+
+	m_velocity->x = vX;
+	m_velocity->y = vY;
+	m_velocity->z = vZ;
+
 	rotation = _rotation;
 	scale = _scale;
-	m_velocity = _vel;
 	m_gravityEffect = _grav;
 	m_lifeLength = _life;
 
@@ -39,7 +47,7 @@ bool Particle::Tick(Camera* _camera)
     m_velocity->y += -9.8 * m_gravityEffect * Timer::DeltaTime;
     *m_instantVelocity = *m_velocity * Timer::DeltaTime;
 	*position += *m_instantVelocity;
-	distance = glm::length2(_camera->Position - *position);
+	distance = glm::length2(*_camera->Position - *position);
 	UpdateTextureCoordInfo();
     m_elapsedTime += Timer::DeltaTime;
     return m_elapsedTime < m_lifeLength;
