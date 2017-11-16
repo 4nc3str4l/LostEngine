@@ -9,6 +9,9 @@ Transform::Transform(Entity* _owner)
 	rotation = new glm::vec3(0, 0, 0);
 	scale = new glm::vec3(1, 1, 1);
 	model = new glm::mat4();
+	forward = new glm::vec3(0, 0, 1);
+	up = new glm::vec3(0, 0, 1);
+	left = new glm::vec3(0, 0, 1);
 	parent = nullptr;
 }
 
@@ -18,6 +21,9 @@ Transform::~Transform()
 	delete rotation;
 	delete scale;
 	delete model;
+	delete forward;
+	delete up;
+	delete left;
 	for (Transform* child : chilldren)
 	{
 		delete child->entity;
@@ -58,7 +64,6 @@ void Transform::CalcModelMatrix(Transform* _toCompute)
 
 glm::mat4* Transform::GetModelMatrix()
 {
-
 	ResetModelMatrix();
 
 	if (HasParent()) 
@@ -84,6 +89,7 @@ glm::mat4* Transform::GetModelMatrix()
 		CalcModelMatrix(this);
 	}
 	
+	CalcForwardVector();
 	return model;
 }
 
@@ -117,6 +123,21 @@ void Transform::SetParent(Transform* _newParent)
 void Transform::Unparent()
 {
 	parent = nullptr;
+}
+
+void Transform::CalcForwardVector()
+{
+	forward->x = (*model)[0][2];
+	forward->y = (*model)[1][2];
+	forward->z = (*model)[2][2];
+
+	up->x = (*model)[0][1];
+	up->y = (*model)[1][1];
+	up->z = (*model)[2][1];
+
+	left->x = (*model)[0][0];
+	left->y = (*model)[1][0];
+	left->z = (*model)[2][0];
 }
 
 }}

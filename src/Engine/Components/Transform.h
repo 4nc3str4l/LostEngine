@@ -19,6 +19,9 @@ public:
 	glm::vec3* position;
 	glm::vec3* rotation;
 	glm::vec3* scale;
+	glm::vec3* forward;
+	glm::vec3* up;
+	glm::vec3* left;
 	Transform* parent;
 	std::vector<Transform*> chilldren;
 	Entity* entity;
@@ -35,5 +38,6 @@ public:
 private:
 	const void ResetModelMatrix();
 	void CalcModelMatrix(Transform* _toCompute);
+	void CalcForwardVector();
 };
 }}
