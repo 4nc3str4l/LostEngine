@@ -30,13 +30,13 @@ static void SPECIAL(T t, Args... _specialMessage)
 template <typename T>
 static void MESSAGE(T t)
 {
-	std::cout << "LOST ENGINE >> \t" << t << " ";
+	std::cout << t << " ";
 }
 
 template <typename T, typename... Args>
 static void MESSAGE(T t, Args... _message)
 {
-	std::cout << "LOST ENGINE >> \t" << t << " ";
+	std::cout << t << " ";
 	MESSAGE(_message...);
 }
 

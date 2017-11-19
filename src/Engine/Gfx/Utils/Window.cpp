@@ -1,13 +1,14 @@
 #include "Window.h"
-
+#include "../../Tools/Log.h"
 namespace LostEngine { namespace Gfx {
+using namespace Tools;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     Window* ownWindow = (Window*)glfwGetWindowUserPointer(window);
     ownWindow->Width = width;
     ownWindow->Heigth = height;
-    std::cout << ownWindow->Width << ", " << ownWindow->Heigth << std::endl;
+	LOG_INFO(ownWindow->Width, ", ",  ownWindow->Heigth);
 	ownWindow->Resized = true;
 	glViewport(0, 0, width, height);
 }

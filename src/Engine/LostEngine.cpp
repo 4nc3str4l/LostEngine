@@ -48,8 +48,6 @@ namespace LostEngine {
 			elapsedTime = timer->DeltaTime;
 			acumulator += elapsedTime;
 
-			HandleInput();
-
 			while (acumulator >= interval)
 			{
 				float realDelta = timer->DeltaTime;
@@ -57,6 +55,7 @@ namespace LostEngine {
 				Update(interval);
 				acumulator -= interval;
 				timer->DeltaTime = realDelta;
+				HandleInput();
 			}
 			Render();
 		}
