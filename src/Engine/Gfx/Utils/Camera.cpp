@@ -25,6 +25,11 @@ glm::mat4 Camera::GetViewMatrix()
 	return glm::lookAt(*Position, *Position + Front, Up);
 }
 
+glm::mat4 Camera::GetProjectionMatrix(Window* _window)
+{
+    return glm::perspective(glm::radians(Zoom),(float)_window->Width/(float)_window->Heigth, 0.1f, 1000.0f); 
+}
+        
 void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 {
 	float velocity = MovementSpeed * deltaTime;
@@ -89,6 +94,20 @@ void Camera::updateCameraVectors()
 	Up = glm::normalize(glm::cross(Right, Front));
 }
 
+glm::vec2 WordToScreenCoordinates(const glm::vec3& _coordinates, Window* _window)
+{
+    // TODO:(4nc3str4l): Don't compute those matrices all the time, try to cache them
+    glm::mat4 view = GetViewMatrix();
+    glm::mat4 projection = GetProjectionMatrix();
+    glm::mat4 viewProjectionMatrix = projection * viewMatrix;
+    // Transform world to clipping coordinates
+    glm::vec3 point = _coordinates * viewProjectionMatrix;
+    glm::vec2 screenPoint;
+    screenPoint.x = round((point.x + 1) / 2.0f) * _window->Width);
+        screenPoint.y = round((1 - point.y) / 2.0f) * _window->Heigth);
+    return screenPoint;
+}
+        
 Camera::~Camera()
 {
 	delete Position; 

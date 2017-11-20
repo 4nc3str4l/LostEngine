@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <map>
 
 namespace LostEngine { namespace Gfx {
 
@@ -49,6 +50,8 @@ public:
 
 private:
 	void CheckCompileErrors(GLuint shader, std::string type);
+
+	std::map<const std::string, GLuint> m_cachedLocations;
 };
 }}
 

@@ -1,11 +1,15 @@
 #pragma once
 
 #include "../../Input/Input.h"
+#include "Window.h"
 #include <glad/glad.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include <vector>
-#include<GLFW/glfw3.h>
+#include <GLFW/glfw3.h>
 
 
 namespace LostEngine { namespace Gfx { 
@@ -32,10 +36,12 @@ namespace LostEngine { namespace Gfx {
 		Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
 		virtual ~Camera();
 		virtual glm::mat4 GetViewMatrix();
+        virtual glm::mat4 GetProjectionMatrix(Window* _window);
 		virtual void ProcessKeyboard(Camera_Movement direction, float deltaTime);
 		virtual void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
 		virtual void ProcessMouseScroll(float yoffset);
 		virtual void Tick(float _delta);
+        glm::vec2 WordToScreenCoords(const glm::vec3& _coordinates, Window* _window);
 	protected:
 		virtual void updateCameraVectors();
 
