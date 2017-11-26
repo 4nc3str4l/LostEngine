@@ -42,6 +42,7 @@ namespace LostEngine { namespace Gfx {
 		virtual void ProcessMouseScroll(float yoffset);
 		virtual void Tick(float _delta);
         glm::vec2 WordToScreenCoords(const glm::vec3& _coordinates, Window* _window);
+        glm::vec3 ScreenToWorldCoords(const glm::vec2& _coordinates, Window* _window);
 	protected:
 		virtual void updateCameraVectors();
 

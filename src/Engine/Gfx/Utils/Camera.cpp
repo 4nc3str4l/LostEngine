@@ -19,16 +19,6 @@ Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float u
 	Pitch = pitch;
 	updateCameraVectors();
 }
-
-glm::mat4 Camera::GetViewMatrix()
-{
-	return glm::lookAt(*Position, *Position + Front, Up);
-}
-
-glm::mat4 Camera::GetProjectionMatrix(Window* _window)
-{
-    return glm::perspective(glm::radians(Zoom),(float)_window->Width/(float)_window->Heigth, 0.1f, 1000.0f); 
-}
         
 void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 {
@@ -94,20 +84,43 @@ void Camera::updateCameraVectors()
 	Up = glm::normalize(glm::cross(Right, Front));
 }
 
-glm::vec2 WordToScreenCoordinates(const glm::vec3& _coordinates, Window* _window)
+glm::mat4 Camera::GetViewMatrix()
+{
+	return glm::lookAt(*Position, *Position + Front, Up);
+}
+
+glm::mat4 Camera::GetProjectionMatrix(Window* _window)
+{
+	return glm::perspective(glm::radians(Zoom), (float)_window->Width / (float)_window->Heigth, 0.1f, 1000.0f);
+}
+
+glm::vec2 Camera::WordToScreenCoords(const glm::vec3& _coordinates, Window* _window)
 {
     // TODO:(4nc3str4l): Don't compute those matrices all the time, try to cache them
     glm::mat4 view = GetViewMatrix();
-    glm::mat4 projection = GetProjectionMatrix();
-    glm::mat4 viewProjectionMatrix = projection * viewMatrix;
+    glm::mat4 projection = GetProjectionMatrix(_window);
+    glm::mat4 viewProjectionMatrix = projection * view;
+
     // Transform world to clipping coordinates
-    glm::vec3 point = _coordinates * viewProjectionMatrix;
+    glm::vec3 point = glm::vec3(glm::vec4(_coordinates, 0) * viewProjectionMatrix);
     glm::vec2 screenPoint;
-    screenPoint.x = round((point.x + 1) / 2.0f) * _window->Width);
-        screenPoint.y = round((1 - point.y) / 2.0f) * _window->Heigth);
+    screenPoint.x = round((point.x + 1) / 2.0f) * _window->Width;
+        screenPoint.y = round((1 - point.y) / 2.0f) * _window->Heigth;
     return screenPoint;
 }
-        
+
+glm::vec3 Camera::ScreenToWorldCoords(const glm::vec2& _coordinates, Window* _window)
+{
+    glm::mat4 view = GetViewMatrix();
+	glm::mat4 projection = GetProjectionMatrix(_window);
+    double x = 2.0f * _coordinates.x / _window->Width -1;
+    double y = -2.0f * _coordinates.y / _window->Heigth + 1;
+	glm::mat4 viewProjectionInverse;
+	viewProjectionInverse = glm::inverse(projection * view);
+    glm::vec4 toReturn(x, y, 0, 0);
+    return glm::vec3(toReturn * viewProjectionInverse);  
+}
+
 Camera::~Camera()
 {
 	delete Position; 
