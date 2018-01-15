@@ -17,6 +17,7 @@ public:
     bool IsOpen();
     void SetTitle(const char* _title);
 	void Clear();
+	void Close();
 public:
     const char* Title;
     int Width;
