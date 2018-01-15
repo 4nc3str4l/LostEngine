@@ -38,12 +38,15 @@ public:
 	Loader(const std::string& _basePath);
 	~Loader();
 	RawModel* LoadToVAO(float* positions, int dimensions, int _arraySize);
+	RawModel* LoadToVAO(float* positions, int _posLength, float* textureCoords, int _textureLength, float* normals, int _normalsLength, int* indices, int _indicesLength);
+	void BindIndicesBuffer(int* indices, int _indicesLength);
 	GLuint CreateVAO();
     GLuint LoadCubeMap(std::string* textureFiles);
 	GLuint LoadTexture(const std::string& _texturePath, int* _width = nullptr, int* _heigth = nullptr);
 	GLuint CreateEmptyVBO(int maxNumOfFloats);
 	void AddInstancedAttributes(int _vao, int _vbo, int _attribute, int _dataSize, int _instancedDataLength, int _offset);
 	void UpdateVBO(GLuint _vbo, float* _data , int dataLength);
+	void UnbindVAO();
 private:
 	void StoreDataInAttributeList(int _attributeNumber, int _coordinateSize, float* _data, int _length);
 };

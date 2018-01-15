@@ -54,6 +54,25 @@ RawModel* Loader::LoadToVAO(float* positions, int dimensions, int _length)
 	return new RawModel(vaoID, _length);
 }
 
+RawModel* Loader::LoadToVAO(float* positions, int _posLength, float* textureCoords, int _textureLength, float* normals, int _normalsLength, int* indices, int _indicesLength) 
+{
+	int vaoID = CreateVAO();
+	BindIndicesBuffer(indices, _indicesLength);
+	StoreDataInAttributeList(0, 3, positions, _posLength);
+	StoreDataInAttributeList(1, 2, textureCoords, _textureLength);
+	StoreDataInAttributeList(2, 3, normals, _normalsLength);
+	UnbindVAO();
+	return new RawModel(vaoID, _indicesLength);
+}
+
+void Loader::BindIndicesBuffer(int* indices, int _indicesLength) {
+	GLuint vboID;
+	glGenBuffers(1, &vboID);
+	vbos.push_back(vboID);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indicesLength * sizeof(int), indices, GL_STATIC_DRAW);
+}
+
 GLuint Loader::CreateVAO()
 {
 	GLuint vaoID;
@@ -186,6 +205,11 @@ void Loader::UpdateVBO(GLuint _vbo, float* _data, int dataLength)
 	glBufferSubData(GL_ARRAY_BUFFER, 0, dataLength * 4,  _data);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+}
+
+void Loader::UnbindVAO() 
+{
+	glBindVertexArray(0);
 }
 
 }}
