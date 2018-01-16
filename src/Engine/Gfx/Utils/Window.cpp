@@ -70,7 +70,7 @@ void Window::Update()
 	Resized = false;
     glfwSwapBuffers(WindowHandle);
     glfwPollEvents();
-	LOG_INFO(Input::MousePosX, ", ", Input::MousePosY);
+	//LOG_INFO(Input::MousePosX, ", ", Input::MousePosY);
 }
 
 bool Window::IsOpen()
