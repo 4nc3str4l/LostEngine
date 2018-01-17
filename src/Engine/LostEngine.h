@@ -14,7 +14,7 @@ using namespace Tools;
 
 namespace LostEngine {
 
-const std::string ENGINE_VERSION = "V.0.1a";
+const std::string ENGINE_VERSION = "V.0.2a";
 
 class LEngine
 {
