@@ -3,11 +3,11 @@
 #include "../Gfx/Utils/Loader.h"
 #include "../Input/Input.h"
 
-using namespace LostEngine;
+using namespace Lost;
 using namespace Gfx;
 using namespace InputHandlers;
 
-namespace LostEngine { namespace Logic {
+namespace Lost { namespace Logic {
 class GameLogic
 {
 public:

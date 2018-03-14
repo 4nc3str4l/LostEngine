@@ -10,7 +10,7 @@
 #include "ParticleShader.h"
 #include "Particle.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 class ParticleRenderer
 {

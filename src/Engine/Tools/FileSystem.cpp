@@ -1,6 +1,6 @@
 #include "FileSystem.h"
 
-namespace LostEngine {
+namespace Lost {
 	namespace Tools {
 		std::string FileSystem::basePath = "";
 	}

@@ -11,7 +11,7 @@
 #include <iostream>,
 #include <vector>
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 using namespace std;
 
@@ -39,7 +39,7 @@ public:
 
 public:
 	Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
-	void Draw(LostEngine::Gfx::Shader shader);
+	void Draw(Lost::Gfx::Shader shader);
 
 private:
 	unsigned int VBO, EBO;

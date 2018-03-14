@@ -10,7 +10,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 	class SkyboxRenderer
 	{
 	public:

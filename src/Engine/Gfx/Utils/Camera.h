@@ -12,7 +12,7 @@
 #include <GLFW/glfw3.h>
 
 
-namespace LostEngine { namespace Gfx { 
+namespace Lost { namespace Gfx { 
 	
 	enum Camera_Movement {
 		FORWARD,

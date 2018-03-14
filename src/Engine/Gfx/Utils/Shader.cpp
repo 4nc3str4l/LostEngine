@@ -1,7 +1,7 @@
 #include "Shader.h"
 #include "Loader.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 	
 	Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath /*= nullptr*/)
 	{

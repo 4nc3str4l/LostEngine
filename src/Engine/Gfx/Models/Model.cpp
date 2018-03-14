@@ -1,6 +1,6 @@
 #include "Model.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 Model::Model(string const &path, bool gamma):
 RenderComponent(Components::SpecificType::Type_Model)
@@ -14,7 +14,7 @@ Model::~Model()
 	//TODO: Implement destroy of the meshes
 }
 
-void Model::Render(LostEngine::Gfx::Shader* shader)
+void Model::Render(Lost::Gfx::Shader* shader)
 {
 	for (unsigned int i = 0; i < meshes.size(); i++)
 		meshes[i].Draw(*shader);

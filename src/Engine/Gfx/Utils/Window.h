@@ -4,7 +4,7 @@
 #include <iostream>
 #include "../../Input/Input.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 using namespace InputHandlers;
 
 class Window

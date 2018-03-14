@@ -25,7 +25,7 @@ inline void CheckOpenGLError(const char* stmt, const char* fname, int line)
 #define GL_CHECK(stmt) stmt
 #endif
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 class Loader
 {

@@ -12,7 +12,7 @@ using namespace Logic;
 using namespace Gfx;
 using namespace Tools;
 
-namespace LostEngine {
+namespace Lost {
 
 const std::string ENGINE_VERSION = "V.0.2a";
 

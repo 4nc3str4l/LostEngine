@@ -1,6 +1,6 @@
 #include "Renderer2d.h"
 
-namespace LostEngine { namespace Gfx2D {
+namespace Lost { namespace Gfx2D {
 Renderer2d::Renderer2d(Shader* _shader)
 {
     m_Shader = _shader;
@@ -39,6 +39,8 @@ void Renderer2d::Prepare()
     
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(m_QuadVAO);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void Renderer2d::DrawSprite(GLuint _textureID, Sprite* _sprite)
@@ -57,6 +59,7 @@ void Renderer2d::DrawSprite(GLuint _textureID, Sprite* _sprite)
 
     // Render textured quad
     m_Shader->SetVec3("spriteColor", *_sprite->Color);
+	m_Shader->SetFloat("transparency", _sprite->Transparency);
 
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }

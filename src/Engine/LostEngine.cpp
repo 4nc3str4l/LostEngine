@@ -1,6 +1,6 @@
 #include "LostEngine.h"
 
-namespace LostEngine {
+namespace Lost {
 
 	LEngine::LEngine(char* _windowTitle, bool _vSync, int _width, int _height, const std::string& base, GameLogic* _gameLogic)
 	{

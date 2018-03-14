@@ -2,7 +2,7 @@
 
 #include<iostream>
 
-namespace LostEngine { namespace Tools { 
+namespace Lost { namespace Tools { 
 
 float Maths::GetRandomFloat(float _minimum, float _maximum)
 {   

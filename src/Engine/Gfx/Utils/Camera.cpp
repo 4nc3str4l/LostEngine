@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
 {
@@ -24,7 +24,7 @@ void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 {
 	float velocity = MovementSpeed * deltaTime;
 	
-	if (LostEngine::InputHandlers::Input::IsKeyPressed(GLFW_KEY_LEFT_SHIFT))
+	if (Lost::InputHandlers::Input::IsKeyPressed(GLFW_KEY_LEFT_SHIFT))
 	{
 		velocity *= 4;
 	}

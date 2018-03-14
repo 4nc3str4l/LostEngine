@@ -7,7 +7,7 @@
 #include <vector>
 
 
-namespace LostEngine { namespace Components {
+namespace Lost { namespace Components {
 class Entity; // Forward declaration of entity
 
 class Transform

@@ -1,7 +1,7 @@
 #pragma once
 #include <glad/glad.h>
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 class ParticleTexture
 {

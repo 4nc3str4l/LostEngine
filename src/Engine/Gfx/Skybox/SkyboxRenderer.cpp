@@ -1,6 +1,6 @@
 #include "SkyboxRenderer.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 	std::string skyboxNames[6] = {
 		"right.jpg",

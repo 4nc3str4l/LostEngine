@@ -3,7 +3,7 @@
 #include "../Gfx/Utils/Shader.h"
 #include "Component.h"
 
-namespace LostEngine { namespace Components {
+namespace Lost { namespace Components {
 class RenderComponent : public Component
 {
 public:

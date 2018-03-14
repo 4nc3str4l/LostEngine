@@ -1,6 +1,6 @@
 #include "Light.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 Light::Light(glm::vec3* ambient, glm::vec3* diffuse, glm::vec3* specular)
 {

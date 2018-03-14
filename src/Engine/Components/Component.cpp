@@ -1,6 +1,6 @@
 #include "Component.h"
 
-namespace LostEngine { namespace Components {
+namespace Lost { namespace Components {
 
 int Component::instanceCounter = 0;
 

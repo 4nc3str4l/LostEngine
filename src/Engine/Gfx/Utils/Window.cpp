@@ -1,6 +1,6 @@
 #include "Window.h"
 #include "../../Tools/Log.h"
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 using namespace Tools;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -86,7 +86,7 @@ void Window::SetTitle(const char * _title)
 
 void Window::Clear()
 {
-	glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 

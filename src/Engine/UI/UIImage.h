@@ -10,7 +10,7 @@
 #include "../Components/RenderComponent.h"
 
 
-namespace LostEngine { namespace UI {
+namespace Lost { namespace UI {
 using namespace Gfx;
 using namespace Components;
 
@@ -20,7 +20,7 @@ public:
 	UIImage(const char* _texturePath, Loader* _loader, Window* _window);
 	UIImage(GLuint _textureID, Loader* _loader, Window* _window);
 	~UIImage();
-	void Render(LostEngine::Gfx::Shader* _shader);
+	void Render(Lost::Gfx::Shader* _shader);
 
 private:
 	void CalcViewportProportion(Window* _window);

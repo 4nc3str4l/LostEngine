@@ -2,7 +2,7 @@
 
 #include "../../Tools/FileSystem.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
    
 	SkyboxShader::SkyboxShader()
 		:Shader((Tools::FileSystem::basePath + "./resources/shaders/skybox.vs").c_str(), 

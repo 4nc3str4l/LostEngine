@@ -1,6 +1,6 @@
 #include "ParticleRenderer.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
     
 	const int MAX_INSTANCES =  70000;
 	const int INSTANCE_DATA_LENGTH = 21;

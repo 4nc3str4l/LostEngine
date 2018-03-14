@@ -1,7 +1,7 @@
 #pragma once
 #include "GLFW/glfw3.h"
 
-namespace LostEngine { namespace Tools {
+namespace Lost { namespace Tools {
 
 	class Timer
 	{

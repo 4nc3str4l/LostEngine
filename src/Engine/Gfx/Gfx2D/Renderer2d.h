@@ -7,7 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
-namespace LostEngine { namespace Gfx2D {
+namespace Lost { namespace Gfx2D {
 
 using namespace Gfx;
 

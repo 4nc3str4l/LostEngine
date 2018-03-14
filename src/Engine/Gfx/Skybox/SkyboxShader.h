@@ -2,7 +2,7 @@
 #include "../Utils/Shader.h"
 #include <string>
 
-namespace LostEngine { namespace Gfx{
+namespace Lost { namespace Gfx{
 	class SkyboxShader : public Shader
 	{
 	public:

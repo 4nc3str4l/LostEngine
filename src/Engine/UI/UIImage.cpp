@@ -1,6 +1,6 @@
 #include "UIImage.h"
 
-namespace LostEngine { namespace UI {
+namespace Lost { namespace UI {
 
 float vertices[] = {
 	// positions         // texture coords

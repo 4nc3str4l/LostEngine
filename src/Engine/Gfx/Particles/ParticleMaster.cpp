@@ -1,7 +1,7 @@
 #include "ParticleMaster.h"
 #include "ParticleFactory.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 std::map<ParticleTexture*, std::vector<Particle*>*>* ParticleMaster::m_particles = new std::map<ParticleTexture*, std::vector<Particle*>*>();
 ParticleRenderer* ParticleMaster::renderer = nullptr;

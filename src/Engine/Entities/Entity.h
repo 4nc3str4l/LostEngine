@@ -6,7 +6,7 @@
 #include "../Tools/Log.h"
 #include "../Components/Transform.h"
 
-namespace LostEngine { namespace Components {
+namespace Lost { namespace Components {
 class Entity
 {
 public:

@@ -1,6 +1,6 @@
 #include "ParticleTexture.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 ParticleTexture::ParticleTexture(GLuint _textureID, int _numberOfRows, bool _additive)
 {

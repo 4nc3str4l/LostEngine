@@ -1,6 +1,6 @@
 #include "RenderComponent.h"
 
-namespace LostEngine { namespace Components { 
+namespace Lost { namespace Components { 
 
 RenderComponent::RenderComponent(SpecificType _type):
     Component(_type)

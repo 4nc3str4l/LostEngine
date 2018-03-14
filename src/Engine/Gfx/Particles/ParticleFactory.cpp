@@ -1,7 +1,7 @@
 #include "ParticleFactory.h"
 #include "ParticleMaster.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
     
     const int INITIAL_STOCK = 200000;
 	std::vector<Particle*>* ParticleFactory::avaliableParticles = new std::vector<Particle*>();

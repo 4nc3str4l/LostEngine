@@ -23,7 +23,7 @@
 #include "../../Components/RenderComponent.h"
 
 using namespace std;
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 class Model : public Components::RenderComponent
 {
@@ -36,7 +36,7 @@ public:
 public:
 	Model(string const &path, bool gamma = false);
 	~Model();
-	void Render(LostEngine::Gfx::Shader* shader);
+	void Render(Lost::Gfx::Shader* shader);
 private:
 	void loadModel(string const &path);
 	void processNode(aiNode *node, const aiScene *scene);

@@ -2,7 +2,7 @@
 #include<glm/glm.hpp>
 #include "Light.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 class DirectionalLight : public Light
 {

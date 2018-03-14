@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-namespace LostEngine { namespace Components {
+namespace Lost { namespace Components {
 
 using namespace Tools;
 

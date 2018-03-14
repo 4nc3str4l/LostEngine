@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-namespace LostEngine {
+namespace Lost {
 	namespace Tools {
 		class FileSystem
 		{

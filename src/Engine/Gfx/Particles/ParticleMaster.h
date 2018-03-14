@@ -5,7 +5,7 @@
 #include "Particle.h"
 #include "ParticleRenderer.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 
 class ParticleMaster

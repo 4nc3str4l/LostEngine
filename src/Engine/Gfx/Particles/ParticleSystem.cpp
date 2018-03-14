@@ -5,7 +5,7 @@
 #include "../../Tools/Maths.h"
 #include "ParticleFactory.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 using namespace Tools;
 
 ParticleSystem::ParticleSystem(ParticleTexture* _texture, float _pps, float _speed, float _gravityComplient, float _lifeLength, float _scale)

@@ -3,7 +3,7 @@
 #include<string>
 #include "../../Tools/Log.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
 
 using namespace Tools;
 
@@ -127,6 +127,7 @@ GLuint Loader::LoadCubeMap(std::string* textureFiles)
 
 GLuint Loader::LoadTexture(const std::string& _texturePath, int* _width, int* _heigth)
 {
+
 	GLuint textureID;
 	int textureWidth;
 	int textureHeigth;

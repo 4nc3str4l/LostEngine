@@ -2,7 +2,7 @@
 #include<vector>
 #include "Particle.h"
 
-namespace LostEngine { namespace Gfx {
+namespace Lost { namespace Gfx {
     class ParticleFactory
     {
     public:
