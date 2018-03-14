@@ -8,7 +8,5 @@ uniform float transparency;
 
 void main()
 {    
-    color = vec4(spriteColor, 1.0f) * texture(image, TexCoords);
-    color.w = transparency;
-    color.x = 1.0f;
+    color = vec4(spriteColor, transparency) * texture(image, TexCoords);
 } 
