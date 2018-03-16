@@ -171,7 +171,7 @@ GLuint Loader::LoadTexture(const std::string& _texturePath, int* _width, int* _h
 	}
 	else
 	{
-		std::cout << "Failed to load texture" << std::endl;
+		std::cout << "Failed to load texture: " << _texturePath << std::endl;
 	}
 	stbi_image_free(data);
 	return textureID;

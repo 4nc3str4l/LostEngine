@@ -32,8 +32,8 @@ namespace Lost { namespace Gfx {
 	{
 
 	public:
-		Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH);
-		Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
+		Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH, const float _zNear = 0.1f, const float _zFar = 1000.0f);
+		Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch, const float _zNear, const float _zFar);
 		virtual ~Camera();
 		virtual glm::mat4 GetViewMatrix();
         virtual glm::mat4 GetProjectionMatrix(Window* _window);
@@ -60,6 +60,9 @@ namespace Lost { namespace Gfx {
 		float MovementSpeed;
 		float MouseSensitivity;
 		float Zoom;
+		
+		float ZNear;
+		float ZFar;
 	};
 }}
 

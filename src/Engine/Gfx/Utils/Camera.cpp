@@ -2,22 +2,26 @@
 
 namespace Lost { namespace Gfx {
 
-Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
+Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch, const float _zNear, const float _zFar) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
 {
 	Position = new glm::vec3(position);
 	WorldUp = up;
 	Yaw = yaw;
 	Pitch = pitch;
 	updateCameraVectors();
+	ZNear = _zNear;
+	ZFar = _zFar;
 }
 		
-Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
+Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float _pitch, const float _zNear, const float _zFar) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
 {
 	Position = new glm::vec3(posX, posY, posZ);
 	WorldUp = glm::vec3(upX, upY, upZ);
 	Yaw = yaw;
-	Pitch = pitch;
+	Pitch = _pitch;
 	updateCameraVectors();
+	ZNear = _zNear;
+	ZFar = _zFar;
 }
         
 void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
@@ -91,7 +95,7 @@ glm::mat4 Camera::GetViewMatrix()
 
 glm::mat4 Camera::GetProjectionMatrix(Window* _window)
 {
-	return glm::perspective(glm::radians(Zoom), (float)_window->Width / (float)_window->Heigth, 0.1f, 1000.0f);
+	return glm::perspective(glm::radians(Zoom), (float)_window->Width / (float)_window->Heigth, ZNear, ZFar);
 }
 
 glm::vec2 Camera::WordToScreenCoords(const glm::vec3& _coordinates, Window* _window)
