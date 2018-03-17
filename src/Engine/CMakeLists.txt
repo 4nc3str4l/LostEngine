@@ -41,4 +41,4 @@ AddDependency(TARGET LostEngine DEPENDENCY ${assimp_library})
 AddDependency(TARGET LostEngine DEPENDENCY ${glfw_library})
 AddDependency(TARGET LostEngine DEPENDENCY ${OPENGL_gl_LIBRARY})
 
-BuildNow(TARGET LostEngine STATIC_LIB OUTPUT_NAME LostEngine)
+BuildNow(TARGET LostEngine STATIC_LIB OUTPUT_NAME LostEngine DEFINES "ASIO_STANDALONE")
