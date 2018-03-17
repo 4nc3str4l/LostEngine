@@ -1,8 +1,10 @@
 #include "Shader.h"
 #include "Loader.h"
+#include "../../Tools/Log.h"
 
 namespace Lost { namespace Gfx {
-	
+	using namespace Tools;
+
 	Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath /*= nullptr*/)
 	{
         std::cout << "Building Shader: " << vertexPath << std::endl;
@@ -43,7 +45,7 @@ namespace Lost { namespace Gfx {
 		}
 		catch (std::ifstream::failure e)
 		{
-			std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+			LOG_FAIL("FILE NOT SUCCESFULLY READ");
 		}
 		
 		const char* vShaderCode = vertexCode.c_str();
