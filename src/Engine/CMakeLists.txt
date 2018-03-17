@@ -14,6 +14,7 @@ set(SOURCE_FOLDERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Skybox  
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Particles 
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Gfx2D   
+    ${CMAKE_CURRENT_SOURCE_DIR}/Net   
 )
 
 foreach(folder ${SOURCE_FOLDERS})
