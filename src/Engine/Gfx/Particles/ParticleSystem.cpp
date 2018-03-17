@@ -19,7 +19,6 @@ ParticleSystem::ParticleSystem(ParticleTexture* _texture, float _pps, float _spe
 	transform = new Components::Transform(nullptr);
 }
 
-		
 ParticleSystem::~ParticleSystem()
 {
 }

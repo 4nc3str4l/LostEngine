@@ -123,7 +123,7 @@ namespace Lost { namespace Gfx {
 				UpdateTexCoordInfo(particle);
 			}
 			m_loader->UpdateVBO(m_vbo, m_buffer, size);
-			glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, m_quad->VertexCount, particleList->size());
+			glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, particleList->size());
 		}
 		FinnishRendering();
 	}
