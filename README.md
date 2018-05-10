@@ -1,5 +1,5 @@
 # LostEngine
-3D/2D game engine written in C++ and GL
+3D/2D game engine written in C/C++ and OpenGL 4.5
 
 # Features
 
