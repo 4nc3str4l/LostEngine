@@ -105,25 +105,25 @@ void Window::logGPUInfo()
     std::cout << "OpenGL version supported by this platform:\t" << glGetString(GL_VERSION) << std::endl;
 }
 
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void Window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     Window* win = (Window*) glfwGetWindowUserPointer(window);
     Input::keys[key] = action != GLFW_RELEASE;
 }
 
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+void Window::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
     Window* win = (Window*) glfwGetWindowUserPointer(window);
     Input::mouseButtons[button] = action != GLFW_RELEASE;
 }
 
-void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+void Window::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
     Input::MousePosX = xpos;
     Input::MousePosY = ypos;
 }
 
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+void Window::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     Input::ScrollOffset = yoffset;
 }
