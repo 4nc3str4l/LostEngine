@@ -2,7 +2,7 @@
 
 #include "../Utils/Shader.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
     
 class ParticleShader : public Shader
 {

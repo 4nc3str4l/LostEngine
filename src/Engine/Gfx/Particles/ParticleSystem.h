@@ -6,7 +6,7 @@
 #include "Particle.h"
 #include "../../Components/Transform.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 class ParticleSystem
 {
 public:
@@ -26,7 +26,7 @@ private:
 	glm::vec3* GenerateRandomUnitVector();
 
 public:
-	Components::Transform* transform;
+	components::Transform* transform;
 private:
             
     float m_pps;

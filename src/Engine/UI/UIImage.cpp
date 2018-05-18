@@ -1,6 +1,6 @@
 #include "UIImage.h"
 
-namespace Lost { namespace UI {
+namespace le { namespace ui {
 
 float vertices[] = {
 	// positions         // texture coords
@@ -16,7 +16,7 @@ unsigned int indices[] = {
 };
 
 UIImage::UIImage(const char * _texturePath, Loader * _loader, Window* _window) :
-	RenderComponent(Components::SpecificType::Type_UIImage)
+	RenderComponent(components::SpecificType::Type_UIImage)
 {
 	m_Window = _window;
 	VAO = _loader->CreateVAO();
@@ -45,7 +45,7 @@ UIImage::UIImage(const char * _texturePath, Loader * _loader, Window* _window) :
 }
 
 UIImage::UIImage(GLuint _textureID, Loader* _loader, Window* _window):
-	RenderComponent(Components::SpecificType::Type_UIImage)
+	RenderComponent(components::SpecificType::Type_UIImage)
 {
 	m_Window = _window;
 	TextureID = _textureID;

@@ -1,7 +1,7 @@
 #include "WaterShader.h"
 #include "../../LostEngine.h"
 
-using namespace Tools;
+using namespace tools;
 
 namespace le { namespace water {
 

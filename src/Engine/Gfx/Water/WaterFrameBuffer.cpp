@@ -1,7 +1,7 @@
 #include "WaterFrameBuffer.h"
 
 namespace le { namespace water {
-	WaterFrameBuffer::WaterFrameBuffer(Lost::Gfx::Window* _window)
+	WaterFrameBuffer::WaterFrameBuffer(le::gfx::Window* _window)
 	{
 		window = _window;
 		InitializeReflectionFrameBuffer();

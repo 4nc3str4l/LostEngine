@@ -3,7 +3,7 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
-namespace Lost { namespace InputHandlers { 
+namespace le { namespace input { 
 
 const int MAX_KEYS = 1024;
 const int MAX_BUTTONS = 32;

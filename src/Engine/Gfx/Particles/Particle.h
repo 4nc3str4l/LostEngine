@@ -4,7 +4,7 @@
 #include "ParticleTexture.h"
 #include "../Utils/Camera.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 using namespace glm;
 
 class Particle

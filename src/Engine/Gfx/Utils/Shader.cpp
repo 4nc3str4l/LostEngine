@@ -2,8 +2,8 @@
 #include "Loader.h"
 #include "../../Tools/Log.h"
 
-namespace Lost { namespace Gfx {
-	using namespace Tools;
+namespace le { namespace gfx {
+	using namespace tools;
 
 	Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath /*= nullptr*/)
 	{

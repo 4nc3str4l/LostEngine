@@ -1,6 +1,6 @@
 #include "Camera2d.h"
 
-namespace Lost { namespace Gfx2D{
+namespace le { namespace gfx2d{
 
 Camera2d::Camera2d(Window* _window) : Entity()
 {

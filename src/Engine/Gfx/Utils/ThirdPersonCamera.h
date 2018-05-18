@@ -3,9 +3,9 @@
 #include "Camera.h"
 #include "../../Entities/Entity.h"
 
-namespace Lost { namespace Gfx { 
+namespace le { namespace gfx { 
 
-using namespace Components;
+using namespace components;
 
 class ThirdPersonCamera: public Camera
 {

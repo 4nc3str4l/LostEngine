@@ -2,8 +2,8 @@
 #include "glm/glm.hpp"
 
 
-namespace Lost { namespace Gfx { 
-using namespace Tools;
+namespace le { namespace gfx { 
+using namespace tools;
 
 ThirdPersonCamera::ThirdPersonCamera(Entity* _toTrack, glm::vec3 _position, glm::vec3 _up, float _yaw, float _pitch)
 	: Camera(_position, _up, _yaw, _pitch)

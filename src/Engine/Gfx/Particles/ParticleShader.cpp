@@ -2,8 +2,8 @@
 
 #include "../../Tools/FileSystem.h"
 
-namespace Lost { namespace Gfx {
-	ParticleShader::ParticleShader() : Shader((Tools::FileSystem::basePath + "./resources/shaders/particles/particles.vs").c_str(), (Tools::FileSystem::basePath + "./resources/shaders/particles/particles.fs").c_str())
+namespace le { namespace gfx {
+	ParticleShader::ParticleShader() : Shader((tools::FileSystem::basePath + "./resources/shaders/particles/particles.vs").c_str(), (tools::FileSystem::basePath + "./resources/shaders/particles/particles.fs").c_str())
 	{
 		m_texOffset1 = glGetUniformLocation(ID, "texOffset1");
 		m_texOffset2 = glGetUniformLocation(ID, "texOffset2");

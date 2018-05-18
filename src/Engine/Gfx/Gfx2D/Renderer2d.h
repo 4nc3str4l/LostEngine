@@ -7,9 +7,9 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
-namespace Lost { namespace Gfx2D {
+namespace le { namespace gfx2d {
 
-using namespace Gfx;
+using namespace gfx;
 
 class Renderer2d{
 public:

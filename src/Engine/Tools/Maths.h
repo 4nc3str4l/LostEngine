@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Lost { namespace Tools { 
+namespace le { namespace tools { 
 
 class Maths
 {

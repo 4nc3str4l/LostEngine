@@ -8,11 +8,11 @@
 #include "Tools/FileSystem.h"
 #include <string>
 
-using namespace Logic;
-using namespace Gfx;
-using namespace Tools;
+using namespace logic;
+using namespace gfx;
+using namespace tools;
 
-namespace Lost {
+namespace le {
 
 const std::string ENGINE_VERSION = "V.0.2a";
 

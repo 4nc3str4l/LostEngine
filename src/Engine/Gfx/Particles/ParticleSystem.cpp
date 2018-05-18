@@ -5,8 +5,8 @@
 #include "../../Tools/Maths.h"
 #include "ParticleFactory.h"
 
-namespace Lost { namespace Gfx {
-using namespace Tools;
+namespace le { namespace gfx {
+using namespace tools;
 
 ParticleSystem::ParticleSystem(ParticleTexture* _texture, float _pps, float _speed, float _gravityComplient, float _lifeLength, float _scale)
 {
@@ -16,7 +16,7 @@ ParticleSystem::ParticleSystem(ParticleTexture* _texture, float _pps, float _spe
     m_gravityComplient = _gravityComplient;
     m_averageLifeLength = _lifeLength;
     m_averageScale = _scale;
-	transform = new Components::Transform(nullptr);
+	transform = new components::Transform(nullptr);
 }
 
 ParticleSystem::~ParticleSystem()

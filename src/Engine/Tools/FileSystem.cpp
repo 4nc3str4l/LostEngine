@@ -1,7 +1,7 @@
 #include "FileSystem.h"
 
-namespace Lost {
-	namespace Tools {
+namespace le {
+	namespace tools {
 		std::string FileSystem::basePath = "";
 	}
 }

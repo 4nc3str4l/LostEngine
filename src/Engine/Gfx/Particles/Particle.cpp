@@ -2,7 +2,7 @@
 #include "../../LostEngine.h"
 #include "ParticleMaster.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 
 Particle::Particle()
 {

@@ -1,6 +1,6 @@
 #include "Input.h"
 
-namespace Lost { namespace InputHandlers {
+namespace le { namespace input {
 
 double Input::MousePosX = 0.0f;
 double Input::MousePosY = 0.0f;

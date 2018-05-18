@@ -7,10 +7,10 @@
 #include "glm/glm.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 
-namespace Lost { namespace Gfx2D {
+namespace le { namespace gfx2d {
 
-using namespace Components;
-using namespace Gfx;
+using namespace components;
+using namespace gfx;
 
 class Camera2d : public Entity
 {

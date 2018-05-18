@@ -1,7 +1,7 @@
 #pragma once
 #include<glm/glm.hpp>
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 class Light
 {
 public:

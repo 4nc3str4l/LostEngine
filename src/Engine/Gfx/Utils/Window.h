@@ -4,8 +4,8 @@
 #include <iostream>
 #include "../../Input/Input.h"
 
-namespace Lost { namespace Gfx {
-using namespace InputHandlers;
+namespace le { namespace gfx {
+using namespace input;
 
 class Window
 {

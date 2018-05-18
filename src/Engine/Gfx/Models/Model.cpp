@@ -1,9 +1,9 @@
 #include "Model.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 
 Model::Model(string const &path, bool gamma):
-RenderComponent(Components::SpecificType::Type_Model)
+RenderComponent(components::SpecificType::Type_Model)
 {
 	gammaCorrection = gamma;
 	loadModel(path);
@@ -14,7 +14,7 @@ Model::~Model()
 	//TODO: Implement destroy of the meshes
 }
 
-void Model::Render(Lost::Gfx::Shader* shader)
+void Model::Render(le::gfx::Shader* shader)
 {
 	for (unsigned int i = 0; i < meshes.size(); i++)
 		meshes[i].Draw(*shader);

@@ -1,7 +1,7 @@
 #include "Sprite.h"
 
 
-namespace Lost { namespace Gfx2D {
+namespace le { namespace gfx2d {
     
 Sprite::Sprite()
 {

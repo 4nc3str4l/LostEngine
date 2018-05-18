@@ -1,6 +1,6 @@
 #include "DirectionalLight.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 
 DirectionalLight::DirectionalLight(glm::vec3* direction, glm::vec3* ambient, glm::vec3* diffuse, glm::vec3* specular) :
 	Light(ambient, diffuse, specular)

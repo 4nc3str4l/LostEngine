@@ -1,6 +1,6 @@
 #include "Transform.h"
 
-namespace Lost { namespace Components {
+namespace le { namespace components {
 
 Transform::Transform(Entity* _owner)
 {

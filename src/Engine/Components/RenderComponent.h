@@ -3,12 +3,12 @@
 #include "../Gfx/Utils/Shader.h"
 #include "Component.h"
 
-namespace Lost { namespace Components {
+namespace le { namespace components {
 class RenderComponent : public Component
 {
 public:
     RenderComponent(SpecificType _type);
 	virtual ~RenderComponent();
-	virtual void Render(Gfx::Shader* _shader) = 0;
+	virtual void Render(gfx::Shader* _shader) = 0;
 };
 }}

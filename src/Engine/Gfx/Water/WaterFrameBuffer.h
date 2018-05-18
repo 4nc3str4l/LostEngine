@@ -22,9 +22,9 @@ public:
 	GLuint RefractionTexture;
 	GLuint RefractionDepthTexture;
 private:
-    Lost::Gfx::Window* window;
+    le::gfx::Window* window;
 public:
-	WaterFrameBuffer(Lost::Gfx::Window* _window);
+	WaterFrameBuffer(le::gfx::Window* _window);
 	~WaterFrameBuffer();
 	void BindReflectionFrameBuffer();
 	void BindRefractionFrameBuffer();

@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 
-namespace Lost {
-	namespace Tools {
+namespace le {
+	namespace tools {
 		class FileSystem
 		{
 		public:

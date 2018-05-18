@@ -23,9 +23,9 @@
 #include "../../Components/RenderComponent.h"
 
 using namespace std;
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 
-class Model : public Components::RenderComponent
+class Model : public components::RenderComponent
 {
 public:
 	vector<Texture> textures_loaded;
@@ -36,7 +36,7 @@ public:
 public:
 	Model(string const &path, bool gamma = false);
 	~Model();
-	void Render(Lost::Gfx::Shader* shader);
+	void Render(le::gfx::Shader* shader);
 private:
 	void loadModel(string const &path);
 	void processNode(aiNode *node, const aiScene *scene);

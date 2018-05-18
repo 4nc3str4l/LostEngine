@@ -1,6 +1,6 @@
 #include "Renderer2d.h"
 
-namespace Lost { namespace Gfx2D {
+namespace le { namespace gfx2d {
 Renderer2d::Renderer2d(Shader* _shader)
 {
     m_Shader = _shader;

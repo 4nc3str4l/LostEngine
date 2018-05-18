@@ -1,6 +1,6 @@
 #include "Mesh.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 
 Mesh::Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures)
 {
@@ -10,7 +10,7 @@ Mesh::Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture
 	setupMesh();
 }
 
-void Mesh::Draw(Lost::Gfx::Shader shader)
+void Mesh::Draw(le::gfx::Shader shader)
 {
 	// bind appropriate textures
 	unsigned int diffuseNr = 1;

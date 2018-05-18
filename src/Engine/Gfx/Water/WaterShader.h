@@ -3,8 +3,8 @@
 #include "../Utils/Shader.h"
 #include "../Utils/Camera.h"
 
-using namespace Lost;
-using namespace Gfx;
+using namespace le;
+using namespace gfx;
 
 namespace le { namespace water {
 

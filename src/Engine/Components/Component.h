@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Lost { namespace Components {
+namespace le { namespace components {
 
     enum SpecificType 
     {

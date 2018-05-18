@@ -1,8 +1,8 @@
 #include "Entity.h"
 
-namespace Lost { namespace Components {
+namespace le { namespace components {
 
-using namespace Tools;
+using namespace tools;
 
 Entity::Entity()
 {

@@ -6,7 +6,7 @@
 #include <windows.h>
 #endif
 
-namespace Lost { namespace Tools {
+namespace le { namespace tools {
 
 #define ENGINE_SPECIAL_COLOR 14
 #define ENGINE_INFO_COLOR 9

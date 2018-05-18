@@ -1,6 +1,6 @@
 #include "Component.h"
 
-namespace Lost { namespace Components {
+namespace le { namespace components {
 
 int Component::instanceCounter = 0;
 

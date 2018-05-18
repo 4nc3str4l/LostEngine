@@ -3,9 +3,9 @@
 #include<string>
 #include "../../Tools/Log.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 
-using namespace Tools;
+using namespace tools;
 
 Loader::Loader(const std::string& _basePath)
 {

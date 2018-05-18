@@ -9,7 +9,7 @@
 #include <iostream>
 #include <map>
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 
 class Shader
 {

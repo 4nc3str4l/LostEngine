@@ -1,6 +1,6 @@
 #include "Timer.h"
 
-namespace Lost { namespace Tools {
+namespace le { namespace tools {
 
 float Timer::DeltaTime = 0.0f;
 float Timer::lastFrame = 0.0f;

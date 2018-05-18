@@ -2,7 +2,7 @@
 
 #include "../../Components/RenderComponent.h"
 
-namespace Lost { namespace Gfx2D {
+namespace le { namespace gfx2d {
 
 class Sprite
 {

@@ -2,7 +2,7 @@
 #include<glm/glm.hpp>
 #include "PointLight.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
 class SpotLight : public PointLight
 {
 public:

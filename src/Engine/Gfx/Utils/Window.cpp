@@ -1,7 +1,7 @@
 #include "Window.h"
 #include "../../Tools/Log.h"
-namespace Lost { namespace Gfx {
-using namespace Tools;
+namespace le { namespace gfx {
+using namespace tools;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {

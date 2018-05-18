@@ -1,6 +1,6 @@
 #include "SpriteBatch.h"
 
-namespace Lost { namespace Gfx2D {
+namespace le { namespace gfx2d {
 
 const int MAX_INSTANCES =  70000;
 const int INSTANCE_DATA_LENGTH = 21;

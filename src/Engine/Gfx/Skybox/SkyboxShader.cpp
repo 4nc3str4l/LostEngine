@@ -2,11 +2,11 @@
 
 #include "../../Tools/FileSystem.h"
 
-namespace Lost { namespace Gfx {
+namespace le { namespace gfx {
    
 	SkyboxShader::SkyboxShader()
-		:Shader((Tools::FileSystem::basePath + "./resources/shaders/skybox.vs").c_str(), 
-		(Tools::FileSystem::basePath + "./resources/shaders/skybox.fs").c_str())
+		:Shader((tools::FileSystem::basePath + "./resources/shaders/skybox.vs").c_str(), 
+		(tools::FileSystem::basePath + "./resources/shaders/skybox.fs").c_str())
 	{
 		m_projectionMatrix = glGetUniformLocation(ID, "projectionMatrix");
 		m_viewMatrix = glGetUniformLocation(ID, "viewMatrix");
