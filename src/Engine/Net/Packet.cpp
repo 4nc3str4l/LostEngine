@@ -1,6 +1,6 @@
 /* Copyright 2016 Guillem Pascual */
 
-#include "packet.h"
+#include "Packet.h"
 
 Packet::Packet() :
 	_read(0),

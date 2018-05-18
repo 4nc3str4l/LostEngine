@@ -65,6 +65,13 @@ AddToIncludes(
     INC_PATH ${PROJECT_SOURCE_DIR}/Dependencies/includes
 )
 
+# Includes 
+AddToIncludes(
+    TARGET LostEngine
+    INC_PATH ${PROJECT_SOURCE_DIR}/Dependencies/includes/asio
+)
+
+
 # Libraries
 find_package(OpenGL)
 AddDependency(TARGET LostEngine DEPENDENCY ${OPENGL_gl_LIBRARY})
