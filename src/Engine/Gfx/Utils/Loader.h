@@ -1,6 +1,6 @@
 #pragma once
 
-#include<vector>
+#include <vector>
 #include "../Models/RawModel.h"
 #include <glad/glad.h>
 #include "../Utils/stb_image.h"
