@@ -1,8 +1,9 @@
 #include "Fbo.h"
+#include "../Utils/Window.h"
 
 namespace le { namespace gfx{
 
-Fbo::Fbo(const GLuint _width, const int _heigth, DepthBufferTypes _depthBufferType)
+Fbo::Fbo(GLuint _width, GLuint _heigth, DepthBufferTypes _depthBufferType)
 {
 	width = _width;
 	height = _heigth;
@@ -13,6 +14,10 @@ void Fbo::bindFrameBuffer()
 {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frameBuffer);
     glViewport(0, 0, width, height);
+	
+	// Clear the buffers or anything will be displayed
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(1, 1, 1, 1);
 }
  
 void Fbo::unbindFrameBuffer() 
@@ -20,7 +25,6 @@ void Fbo::unbindFrameBuffer()
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glViewport(0, 0, Window::Width, Window::Heigth);
 }
- 
 
 void Fbo::bindToRead() 
 {

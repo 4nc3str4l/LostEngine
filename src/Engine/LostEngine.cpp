@@ -25,7 +25,7 @@ namespace le {
 		LOG_CORRECT("Init Graphics OK!");
 
 		LOG_INFO("Init PostProcessing Pipeline");
-		PostProcessing::instance.init(loader);
+		PostProcessing::instance().init(loader);
 		LOG_CORRECT("Init PostProcessing Pipeline OK!");
 
 		LOG_INFO("Init Game Logic");
@@ -82,8 +82,7 @@ namespace le {
 		delete loader;
 		delete window;
 		delete gameLogic;
-		delete timer;
-		
+		delete timer;		
 		LOG_CORRECT("Clean Complete!");
 	}
 }

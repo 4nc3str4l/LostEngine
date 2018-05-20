@@ -6,19 +6,23 @@ ImageRenderer::ImageRenderer(GLuint _width, GLuint _heigth)
     fbo = new Fbo(_width, _heigth, DepthBufferTypes::NONE);
 }
 
+ImageRenderer::ImageRenderer() {}
 
 ImageRenderer::~ImageRenderer()
 {
-    delete fbo;
+	if(fbo != nullptr)
+		delete fbo;
 }
 
 void ImageRenderer::renderQuad(){
-    if(fbo)
-        fbo->bindFrameBuffer();
+
+	if(fbo != nullptr)
+		fbo->bindFrameBuffer();
+
     glClear(GL_COLOR_BUFFER_BIT);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    if(fbo)
-        fbo->unbindFrameBuffer();
+	if (fbo != nullptr)
+		fbo->unbindFrameBuffer();
 }
 
 }}

@@ -5,17 +5,17 @@
 
 namespace le { namespace gfx {
 
-PostProcessing PostProcessing::instance;
-
 void PostProcessing::init(Loader* _loader)
 {
     m_Quad = _loader->LoadToVAO(m_Positions, 2, 8);
+	contrast = new ContrastChanger(1.0f);
 }
+
 
 void PostProcessing::doPostProcessing(GLuint _colorTexture)
 {
     start();
-
+	contrast->render(_colorTexture);
     end();
 }
 
@@ -36,7 +36,6 @@ void PostProcessing::end()
 PostProcessing::~PostProcessing()
 {
     delete m_Quad;
-    LOG_INFO("Postprocessing deleted");
-    std::getchar();
+	delete contrast;
 }
 }}

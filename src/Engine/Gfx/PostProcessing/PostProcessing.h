@@ -2,6 +2,7 @@
 #include "../Models/RawModel.h"
 #include <glad/glad.h>
 #include "../Utils/Loader.h"
+#include "ContrastChanger.h"
 
 namespace le { namespace gfx {
 
@@ -16,10 +17,10 @@ public:
     void doPostProcessing(GLuint _colorTexture);
     void init(Loader* _loader);
 private:
-    float m_Positions[8] {-1, 1, -1, -1, 1, 1, 1, -1};
+    float m_Positions[8]{ -1, 1, -1, -1, 1, 1, 1, -1 };
     RawModel* m_Quad;
 public:
-    static PostProcessing instance;
-
+	static PostProcessing &instance() { static PostProcessing instance; return instance; }
+	ContrastChanger* contrast;
 };
 }}
