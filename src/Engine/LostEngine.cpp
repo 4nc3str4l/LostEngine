@@ -18,20 +18,19 @@ namespace le {
 		LOG_SPECIAL("############################################");
 		LOG_INFO("Init Input");
 		Input::Initialize();
-		LOG_CORRECT("Init Input Correct!");
+		LOG_CORRECT("Init Input OK!");
 		
 		LOG_INFO("Init Graphics");
 		window->Init();
+		LOG_CORRECT("Init Graphics OK!");
 
-		LOG_INFO("Init PostProcessing");
+		LOG_INFO("Init PostProcessing Pipeline");
 		PostProcessing::instance.init(loader);
-		LOG_CORRECT("Init PostProcessing Correct!");
-
-		LOG_CORRECT("Init Graphics Correct!");
+		LOG_CORRECT("Init PostProcessing Pipeline OK!");
 
 		LOG_INFO("Init Game Logic");
 		gameLogic->Init(window, loader);
-		LOG_CORRECT("Init Game Logic Correct!");
+		LOG_CORRECT("Init Game Logic OK!");
 
 		Run();
 	}

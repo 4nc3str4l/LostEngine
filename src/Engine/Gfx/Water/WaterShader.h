@@ -5,6 +5,7 @@
 
 namespace le { namespace water {
 
+using namespace gfx;
 class WaterShader : public Shader
 {
 public:
