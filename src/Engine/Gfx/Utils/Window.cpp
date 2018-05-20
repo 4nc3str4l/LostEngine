@@ -3,8 +3,8 @@
 namespace le { namespace gfx {
 using namespace tools;
 
-Window::Width = 0;
-Window::Heigth = 0;
+int Window::Width = 0;
+int Window::Heigth = 0;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {

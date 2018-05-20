@@ -2,17 +2,17 @@
 
 namespace le { namespace gfx{
 
-Fbo::Fbo(const int _width, const int _heigth, DepthBufferTypes _depthBufferType)
+Fbo::Fbo(const GLuint _width, const int _heigth, DepthBufferTypes _depthBufferType)
 {
-    width = _width;
-    height = _heigth;
-    initialiseFrameBuffer(_depthBufferType);
+	width = _width;
+	height = _heigth;
+	initialiseFrameBuffer(_depthBufferType);
 }
 
 void Fbo::bindFrameBuffer() 
 {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frameBuffer);
-    glViewport(0, 0, width, heigth);
+    glViewport(0, 0, width, height);
 }
  
 void Fbo::unbindFrameBuffer() 
@@ -66,7 +66,7 @@ void Fbo::createDepthTextureAttachment()
 {
     glGenTextures(1, &depthTexture);
     glBindTexture(GL_TEXTURE_2D, depthTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr;
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
@@ -82,11 +82,11 @@ void Fbo::createDepthBufferAttachment()
 
 Fbo::~Fbo()
 {
-    glDeleteFramebuffers(frameBuffer);
-    glDeleteTextures(colorTexture);
-    glDeleteTextures(depthTexture);
-    glDeleteRenderbuffers(depthBuffer);
-    glDeleteRenderbuffers(colorBuffer);
+    glDeleteFramebuffers(1, &frameBuffer);
+    glDeleteTextures(1, &colorTexture);
+    glDeleteTextures(1, &depthTexture);
+    glDeleteRenderbuffers(1, &depthBuffer);
+    glDeleteRenderbuffers(1, &colorBuffer);
 }
 
 }}

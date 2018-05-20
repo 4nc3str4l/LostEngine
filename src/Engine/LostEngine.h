@@ -6,6 +6,7 @@
 #include "Tools/Timer.h"
 #include "Tools/Log.h"
 #include "Tools/FileSystem.h"
+#include "Gfx/PostProcessing/PostProcessing.h"
 #include <string>
 
 using namespace logic;

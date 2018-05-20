@@ -1,6 +1,5 @@
 #pragma once
-#include "glad.h"
-#include "Window.h"
+#include "../Utils/Window.h"
 
 namespace le { namespace gfx{
 
