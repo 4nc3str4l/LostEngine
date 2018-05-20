@@ -3,9 +3,6 @@
 #include "../Utils/Shader.h"
 #include "../Utils/Camera.h"
 
-using namespace le;
-using namespace gfx;
-
 namespace le { namespace water {
 
 class WaterShader : public Shader
