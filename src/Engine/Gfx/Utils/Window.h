@@ -20,8 +20,8 @@ public:
 	void Close();
 public:
     const char* Title;
-    int Width;
-    int Heigth;
+    static int Width;
+    static int Heigth;
     GLFWwindow* WindowHandle;
     bool Resized;
     bool VSync;
