@@ -16,7 +16,8 @@ set(SOURCE_FOLDERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Particles 
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Gfx2D
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/PostProcessing      
-    ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Water    
+    ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Water
+    ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Terrain    
     ${CMAKE_CURRENT_SOURCE_DIR}/Net   
 )
 
