@@ -1,4 +1,5 @@
 #include "LostEngine.h"
+#include "Tools/AssetManager.h"
 
 namespace le {
 
@@ -82,7 +83,8 @@ namespace le {
 		delete loader;
 		delete window;
 		delete gameLogic;
-		delete timer;		
+		delete timer;
+		AssetManager::Dispose();
 		LOG_CORRECT("Clean Complete!");
 	}
 }

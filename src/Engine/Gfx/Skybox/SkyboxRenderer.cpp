@@ -3,13 +3,14 @@
 namespace le { namespace gfx {
 
 	std::string skyboxNames[6] = {
-		"right.jpg",
-		"left.jpg",
-		"top.jpg",
-		"bottom.jpg",
-		"back.jpg",
-		"front.jpg"
+		"bkg1_right.png",
+		"bkg1_left.png",
+		"bkg1_bot.png",
+		"bkg1_top.png",
+		"bkg1_back.png",
+		"bkg1_front.png"
 	};
+
 
 	float SIZE = 500.0f;
 	float skybox_vertices[] = {

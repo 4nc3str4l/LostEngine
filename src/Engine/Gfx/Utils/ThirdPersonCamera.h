@@ -10,12 +10,12 @@ using namespace components;
 class ThirdPersonCamera: public Camera
 {
 public:
-	const float kMinPitch = 4.0f;
+	const float kMinPitch = -89.0f;
 	const float kMaxPitch = 89.99f;
 
 	// Max distance between the camera and the player
-	const float kMinDistance = 20.0f;
-	const float kMaxDistance = 50.0f;
+	const float kMinDistance = 10.0f;
+	const float kMaxDistance = 490.0f;
 
 	ThirdPersonCamera(Entity* _ship, glm::vec3 position = glm::vec3(0.0f, 20.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = 0, float pitch = 20.0f);
 	void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch=true) override;

@@ -23,7 +23,6 @@ namespace le { namespace components {
         GlobalType globalType;
 		int id;
         bool isActive;
-        
 	private:
 		static int instanceCounter;
     };

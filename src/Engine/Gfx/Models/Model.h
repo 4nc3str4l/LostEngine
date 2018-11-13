@@ -32,7 +32,6 @@ public:
 	vector<Mesh> meshes;
 	string directory;
 	bool gammaCorrection;
-
 public:
 	Model(string const &path, bool gamma = false);
 	~Model();
