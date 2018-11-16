@@ -18,7 +18,8 @@ set(SOURCE_FOLDERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/PostProcessing      
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Water
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Terrain    
-    ${CMAKE_CURRENT_SOURCE_DIR}/Net   
+    ${CMAKE_CURRENT_SOURCE_DIR}/Net 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Audio   
 )
 
 # Require GLM
@@ -40,6 +41,7 @@ RequireExternal(
     INC_PATH "./include"
 )
 
+
 # Require ASSIMP
 RequireExternal(
     TARGET LostEngine
@@ -47,6 +49,16 @@ RequireExternal(
     LINK_SUBDIR "code/Debug/"
     LINK_NAME "assimp-vc140-mt"
     MODULE "assimp/assimp:v4.1.0"
+    INC_PATH "./include"
+)
+
+# Require OpenAL
+RequireExternal(
+    TARGET LostEngine
+    ENSURE_ORDER
+    LINK_SUBDIR "./Debug/"
+    LINK_NAME "OpenAL32.lib"
+    MODULE "kcat/openal-soft:openal-soft-1.19.1"
     INC_PATH "./include"
 )
 

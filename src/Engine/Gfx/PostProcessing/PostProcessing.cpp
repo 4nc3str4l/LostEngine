@@ -8,7 +8,7 @@ namespace le { namespace gfx {
 void PostProcessing::init(Loader* _loader)
 {
     m_Quad = _loader->LoadToVAO(m_Positions, 2, 8);
-	contrast = new ContrastChanger(2.0f);
+	contrast = new ContrastChanger(0.0f);
 }
 
 

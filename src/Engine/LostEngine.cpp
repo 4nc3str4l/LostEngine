@@ -7,6 +7,7 @@ namespace le {
 	{
 		window = new Window(_windowTitle, _width, _height, false);
 		loader = new Loader(base);
+		audioManager = new AudioManager();
 		gameLogic = _gameLogic;
 		timer = new Timer();
 		FileSystem::basePath = base;
@@ -24,6 +25,10 @@ namespace le {
 		LOG_INFO("Init Graphics");
 		window->Init();
 		LOG_CORRECT("Init Graphics OK!");
+
+		LOG_INFO("Init Audio");
+		audioManager->Init();
+		LOG_CORRECT("Init Audio OK!");
 
 		LOG_INFO("Init PostProcessing Pipeline");
 		PostProcessing::instance().init(loader);

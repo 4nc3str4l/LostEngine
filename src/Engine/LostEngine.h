@@ -7,11 +7,13 @@
 #include "Tools/Log.h"
 #include "Tools/FileSystem.h"
 #include "Gfx/PostProcessing/PostProcessing.h"
+#include "Audio/AudioManager.h"
 #include <string>
 
 using namespace logic;
 using namespace gfx;
 using namespace tools;
+using namespace audio;
 
 namespace le {
 
@@ -32,6 +34,6 @@ private:
 	GameLogic* gameLogic;
 	Loader* loader;
 	Timer* timer;
-
+	AudioManager* audioManager;
 };
 }
