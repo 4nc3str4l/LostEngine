@@ -1,9 +1,4 @@
 #include "AudioManager.h"
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <iostream>
-
-
 
 namespace le { namespace audio {
 
@@ -11,21 +6,25 @@ AudioManager::AudioManager()
 {
 }
 
-AudioManager::~AudioManager()
-{
-}
-
 void AudioManager::Init()
 {
-	ALCdevice *device;
+	m_Device = alcOpenDevice(NULL);
 
-	device = alcOpenDevice(NULL);
-	if (!device)
-		std::cout << "No audio device detected!" << std::endl;
-	else
-		std::cout << "Device detected!" << std::endl;
+	if (m_Device == NULL)
+	{
+		LOG_FAIL("Failed to initialize OpenAL");
+	}
 
-	// Way to dispose the device
-	alcCloseDevice(device);
+	m_Context = alcCreateContext(m_Device, NULL);
+
+	alcMakeContextCurrent(m_Context);
+
+	alGetError();
+}
+
+AudioManager::~AudioManager()
+{
+	alcDestroyContext(m_Context);
+	alcCloseDevice(m_Device);
 }
 }}

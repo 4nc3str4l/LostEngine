@@ -89,6 +89,7 @@ namespace le {
 		delete window;
 		delete gameLogic;
 		delete timer;
+		delete audioManager;
 		AssetManager::Dispose();
 		LOG_CORRECT("Clean Complete!");
 	}
