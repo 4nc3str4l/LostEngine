@@ -1,8 +1,11 @@
 #pragma once
 
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <fstream>
 #include <AL/al.h>
 #include <AL/alc.h>
-#include <iostream>
 #include "../Tools/Log.h"
 
 
@@ -14,6 +17,7 @@ namespace le { namespace audio {
 		AudioManager();
 		~AudioManager();
 		void Init();
+		void PlaySound();
 	private:
 		ALCcontext *m_Context;
 		ALCdevice *m_Device;
