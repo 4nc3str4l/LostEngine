@@ -52,16 +52,6 @@ RequireExternal(
     INC_PATH "./include"
 )
 
-# Require Alut
-RequireExternal(
-    TARGET LostEngine
-    ENSURE_ORDER
-    LINK_SUBDIR "./Debug/"
-    LINK_NAME "OpenAL32.lib"
-    MODULE "kcat/openal-soft:openal-soft-1.19.1"
-    INC_PATH "./include"
-)
-
 # Require OpenAL
 RequireExternal(
     TARGET LostEngine
