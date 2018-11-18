@@ -28,7 +28,7 @@ void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 {
 	float velocity = MovementSpeed * deltaTime;
 	
-	if (le::input::Input::IsKeyPressed(GLFW_KEY_LEFT_SHIFT))
+	if (le::input::Input::IsKeyPressed(sf::Keyboard::LShift))
 	{
 		velocity *= 4;
 	}

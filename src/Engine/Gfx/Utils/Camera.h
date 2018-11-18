@@ -9,7 +9,6 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <vector>
-#include <GLFW/glfw3.h>
 
 
 namespace le { namespace gfx { 

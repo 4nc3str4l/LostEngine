@@ -19,7 +19,6 @@
 
 #include "Mesh.h"
 #include "../Utils/Shader.h"
-#include "../Utils/stb_image.h"
 #include "../../Components/RenderComponent.h"
 
 using namespace std;

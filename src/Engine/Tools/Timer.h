@@ -1,5 +1,5 @@
 #pragma once
-#include "GLFW/glfw3.h"
+#include "SFML/Window.hpp"
 
 namespace le { namespace tools {
 
@@ -8,6 +8,8 @@ namespace le { namespace tools {
 	public:
 		Timer();
 		void Update();
+	private:
+		sf::Clock clock;
 	public:
 		static float DeltaTime;
 	private:

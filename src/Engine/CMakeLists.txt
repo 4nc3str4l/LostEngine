@@ -18,7 +18,6 @@ set(SOURCE_FOLDERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/PostProcessing      
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Water
     ${CMAKE_CURRENT_SOURCE_DIR}/Gfx/Terrain    
-    ${CMAKE_CURRENT_SOURCE_DIR}/Net 
     ${CMAKE_CURRENT_SOURCE_DIR}/Audio   
 )
 
@@ -31,17 +30,6 @@ RequireExternal(
     INC_PATH "."
 )
 
-# Require GLFW
-RequireExternal(
-    TARGET LostEngine
-    ENSURE_ORDER
-    LINK_SUBDIR "src/Debug/"
-    LINK_NAME "glfw3.lib"
-    MODULE "glfw/glfw:3.2.1"
-    INC_PATH "./include"
-)
-
-
 # Require ASSIMP
 RequireExternal(
     TARGET LostEngine
@@ -49,16 +37,6 @@ RequireExternal(
     LINK_SUBDIR "code/Debug/"
     LINK_NAME "assimp-vc140-mt"
     MODULE "assimp/assimp:v4.1.0"
-    INC_PATH "./include"
-)
-
-# Require OpenAL
-RequireExternal(
-    TARGET LostEngine
-    ENSURE_ORDER
-    LINK_SUBDIR "./Debug/"
-    LINK_NAME "OpenAL32.lib"
-    MODULE "kcat/openal-soft:openal-soft-1.19.1"
     INC_PATH "./include"
 )
 
@@ -80,18 +58,36 @@ AddToIncludes(
     INC_PATH ${PROJECT_SOURCE_DIR}/Dependencies/includes
 )
 
-# Includes 
-AddToIncludes(
-    TARGET LostEngine
-    INC_PATH ${PROJECT_SOURCE_DIR}/Dependencies/includes/asio
-)
-
 
 # Libraries
 find_package(OpenGL)
 AddDependency(TARGET LostEngine DEPENDENCY ${OPENGL_gl_LIBRARY})
 
-ResolveExternal(TARGET LostEngine)
+#######################################################################
+##########################################################################
+# Includes 
+AddToIncludes(
+    TARGET LostEngine
+    INC_PATH ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/include
+)
+
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/flac.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/freetype.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/ogg.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/openal32.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/vorbis.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/vorbisenc.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/vorbisfile.lib)
+
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-main-d.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-window-d.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-system-d.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-graphics-d.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-network-d.lib)
+AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-audio-d.lib)
+
+###################################################################################
+ResolveExternal(TARGET LostEngine)   
 if (LostEngine_IS_RESOLVED)
     BuildNow(TARGET LostEngine STATIC_LIB OUTPUT_NAME LostEngine DEFINES "ASIO_STANDALONE")
 endif()

@@ -3,7 +3,6 @@
 #include <vector>
 #include "../Models/RawModel.h"
 #include <glad/glad.h>
-#include "../Utils/stb_image.h"
 
 inline void CheckOpenGLError(const char* stmt, const char* fname, int line)
 {

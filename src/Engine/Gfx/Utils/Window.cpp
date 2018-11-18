@@ -1,20 +1,13 @@
 #include "Window.h"
 #include "../../Tools/Log.h"
+#include <string>
+
 namespace le { namespace gfx {
 using namespace tools;
 
 int Window::Width = 0;
 int Window::Heigth = 0;
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    Window* ownWindow = (Window*)glfwGetWindowUserPointer(window);
-    ownWindow->Width = width;
-    ownWindow->Heigth = height;
-	LOG_INFO(ownWindow->Width, ", ",  ownWindow->Heigth);
-	ownWindow->Resized = true;
-	glViewport(0, 0, width, height);
-}
 
 Window::Window(char* _title, int _width, int _heigth, bool _vSync)
 {
@@ -29,62 +22,84 @@ Window::Window(char* _title, int _width, int _heigth, bool _vSync)
 
 int Window::Init()
 {
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	sf::ContextSettings settings(24, 8, 4, 3, 3);
+	WindowHandle = new sf::Window(sf::VideoMode(Width, Heigth), Title, sf::Style::Default, settings);
+	
 
-#ifdef __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
+	if (!gladLoadGL()) {
+		LOG_FAIL("Could not load glad!");
+		return -1;
+	}
 
-    WindowHandle = glfwCreateWindow(Width, Heigth, Title, NULL, NULL);
-    if (WindowHandle == NULL)
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
+	WindowHandle->setActive(true);
+	WindowHandle->setVerticalSyncEnabled(VSync ? 1 : 0);
 
-    glfwMakeContextCurrent(WindowHandle);
-    glfwSetInputMode(WindowHandle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    glfwSwapInterval(VSync ? 1 : 0);
-
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD" << std::endl;
-        return -1;
-    }
-
+	WindowHandle->setMouseCursorVisible(false);
+	WindowHandle->setMouseCursorGrabbed(true);
     logGPUInfo();
 
     glEnable(GL_DEPTH_TEST);
-    glfwSetWindowUserPointer(WindowHandle, this);
-    glfwSetFramebufferSizeCallback(WindowHandle, framebuffer_size_callback);
-    glfwSetKeyCallback(WindowHandle, key_callback);
-    glfwSetMouseButtonCallback(WindowHandle, mouse_button_callback);
-    glfwSetCursorPosCallback(WindowHandle, cursor_position_callback);
-    glfwSetScrollCallback(WindowHandle, scroll_callback);
     return 0;
 }
 
 void Window::Update()
 {
 	Resized = false;
-    glfwSwapBuffers(WindowHandle);
-    glfwPollEvents();
-	//LOG_INFO(Input::MousePosX, ", ", Input::MousePosY);
+	sf::Event event;
+	while (WindowHandle->pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+		{
+			shoudClose = true;
+		}
+		else if (event.type == sf::Event::Resized)
+		{
+			// adjust the viewport when the window is resized
+			glViewport(0, 0, event.size.width, event.size.height);
+			Width = event.size.width; 
+			Heigth = event.size.height;
+		}
+		else if (event.type == sf::Event::KeyPressed)
+		{
+			Input::keys[event.key.code] = true;
+		}
+		else if (event.type == sf::Event::KeyReleased)
+		{
+			Input::keys[event.key.code] = false;
+		}
+		if (event.type == sf::Event::MouseButtonPressed)
+		{
+			Input::mouseButtons[event.mouseButton.button] = true;
+		}
+		if (event.type == sf::Event::MouseButtonReleased)
+		{
+			Input::mouseButtons[event.mouseButton.button] = false;
+		}
+		if (event.type == sf::Event::MouseMoved)
+		{
+			Input::MousePosX = event.mouseMove.x;
+			Input::MousePosY = event.mouseMove.y;
+		}
+
+	}
+
+	if (Input::IsKeyPressed(sf::Keyboard::Escape))
+	{
+		shoudClose = true;
+	}
+
+	WindowHandle->display();
 }
 
 bool Window::IsOpen()
 {
-    return !glfwWindowShouldClose(WindowHandle);
+	return !shoudClose;
 }
 
 void Window::SetTitle(const char * _title)
 {
     Title = _title;
-    glfwSetWindowTitle(WindowHandle, Title);
+	WindowHandle->setTitle(std::string(_title));
 }
 
 void Window::Clear()
@@ -95,40 +110,15 @@ void Window::Clear()
 
 void Window::Close()
 {
-	glfwSetWindowShouldClose(WindowHandle, GLFW_TRUE);
 }
 
 Window::~Window()
 {
-    glfwTerminate();
+	delete WindowHandle;
 }
 
 void Window::logGPUInfo()
 {
     std::cout << "OpenGL version supported by this platform:\t" << glGetString(GL_VERSION) << std::endl;
 }
-
-void Window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-    Window* win = (Window*) glfwGetWindowUserPointer(window);
-    Input::keys[key] = action != GLFW_RELEASE;
-}
-
-void Window::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
-{
-    Window* win = (Window*) glfwGetWindowUserPointer(window);
-    Input::mouseButtons[button] = action != GLFW_RELEASE;
-}
-
-void Window::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
-{
-    Input::MousePosX = xpos;
-    Input::MousePosY = ypos;
-}
-
-void Window::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
-    Input::ScrollOffset = yoffset;
-}
-
 }}

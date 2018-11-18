@@ -3,7 +3,7 @@
 #include<iostream>
 
 #include "../Gfx/Utils/Loader.h"
-#include "../Gfx/Utils/stb_image.h"
+#include "SFML/Graphics.hpp"
 #include "../Gfx/Utils/Shader.h"
 #include "../Gfx/Utils/Window.h"
 #include "../Components/Transform.h"

@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include "../../Tools/Log.h"
+#include "SFML/Graphics.hpp"
 
 namespace le { namespace gfx {
 
@@ -94,25 +95,14 @@ GLuint Loader::LoadCubeMap(std::string* textureFiles)
 	{
 		int width, height, nrComponents;
 		std::string path = (*this->basePath) + "/resources/textures/Skybox/" + textureFiles[i];
-		unsigned char *data = stbi_load(path.c_str(), &width, &height, &nrComponents, 0);
-		if (data)
-		{
-			GLenum format;
-			if (nrComponents == 1)
-				format = GL_RED;
-			else if (nrComponents == 3)
-				format = GL_RGB;
-			else if (nrComponents == 4)
-				format = GL_RGBA;
-			GL_CHECK(glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data));
+		sf::Image img_data;
 
-			// Free the texture data
-			stbi_image_free(data);
-		}
-		else
+		if (!img_data.loadFromFile(path.c_str())) 
 		{
-			LOG_FAIL("Could not load: " + path);
+			LOG_FAIL("Could not load", path);
 		}
+
+		GL_CHECK(glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, img_data.getSize().x, img_data.getSize().y, 0, GL_RGBA, GL_UNSIGNED_BYTE, img_data.getPixelsPtr()));
 	}
 	GL_CHECK(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 	GL_CHECK(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
@@ -149,23 +139,17 @@ GLuint Loader::LoadTexture(const std::string& _texturePath, int* _width, int* _h
 	int nrChannels;
 	unsigned char *data = nullptr;
 
-	if (_texturePath.find(".png") != std::string::npos)
-	{
-		data = stbi_load(_texturePath.c_str(), &w, &h, &nrChannels, STBI_rgb_alpha);
-	}
-	else
-	{
-		data = stbi_load(_texturePath.c_str(), &w, &h, &nrChannels, STBI_rgb);
-	}
-	if (data)
+	sf::Image img_data;
+
+	if (img_data.loadFromFile(_texturePath.c_str()))
 	{
 		if (_texturePath.find(".png") != std::string::npos) 
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img_data.getSize().x, img_data.getSize().y, 0, GL_RGBA, GL_UNSIGNED_BYTE, img_data.getPixelsPtr());
 		}
 		else
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_data.getSize().x, img_data.getSize().y, 0, GL_RGB, GL_UNSIGNED_BYTE, img_data.getPixelsPtr());
 		}
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
@@ -173,7 +157,6 @@ GLuint Loader::LoadTexture(const std::string& _texturePath, int* _width, int* _h
 	{
 		std::cout << "Failed to load texture: " << _texturePath << std::endl;
 	}
-	stbi_image_free(data);
 	return textureID;
 }
 

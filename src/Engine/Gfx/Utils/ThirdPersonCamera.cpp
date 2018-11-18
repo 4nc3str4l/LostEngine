@@ -15,7 +15,7 @@ ThirdPersonCamera::ThirdPersonCamera(Entity* _toTrack, glm::vec3 _position, glm:
 void ThirdPersonCamera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
 {
 	// Pitch
-	if (Input::IsMouseButtonPressed(GLFW_MOUSE_BUTTON_2)) 
+	if (Input::IsMouseButtonPressed(sf::Mouse::Right)) 
 	{
 		float pitchChange = yoffset * 0.1f;
 		Pitch -= pitchChange;

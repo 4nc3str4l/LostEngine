@@ -18,17 +18,18 @@ namespace le {
 		LOG_SPECIAL("############################################");
 		LOG_SPECIAL("            LOST ENGINE ", ENGINE_VERSION);
 		LOG_SPECIAL("############################################");
-		LOG_INFO("Init Input");
-		Input::Initialize();
-		LOG_CORRECT("Init Input OK!");
-		
 		LOG_INFO("Init Graphics");
 		window->Init();
 		LOG_CORRECT("Init Graphics OK!");
 
+		LOG_INFO("Init Input");
+		Input::Initialize();
+		LOG_CORRECT("Init Input OK!");
+		
 		LOG_INFO("Init Audio");
 		audioManager->Init();
 		LOG_CORRECT("Init Audio OK!");
+
 
 		LOG_INFO("Init PostProcessing Pipeline");
 		PostProcessing::instance().init(loader);
