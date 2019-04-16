@@ -1,5 +1,6 @@
 CreateTarget(TARGET LostEngine)
 
+
 # Source directories
 set(SOURCE_FOLDERS
     ${CMAKE_CURRENT_SOURCE_DIR}    
@@ -66,25 +67,39 @@ AddDependency(TARGET LostEngine DEPENDENCY ${OPENGL_gl_LIBRARY})
 #######################################################################
 ##########################################################################
 # Includes 
+if(WIN32)
 AddToIncludes(
     TARGET LostEngine
-    INC_PATH ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/include
+    INC_PATH ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/include/win
 )
+endif(WIN32)
 
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/flac.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/freetype.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/ogg.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/openal32.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/vorbis.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/vorbisenc.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/vorbisfile.lib)
+if(UNIX)
+AddToIncludes(
+    TARGET LostEngine
+    INC_PATH ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/include/lin
+)
+endif(UNIX)
 
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-main-d.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-window-d.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-system-d.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-graphics-d.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-network-d.lib)
-AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/sfml-audio-d.lib)
+
+# Windows
+if(WIN32)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/flac.lib)  
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/freetype.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/ogg.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/openal32.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/vorbis.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/vorbisenc.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/vorbisfile.lib)
+
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/sfml-main-d.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/sfml-window-d.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/sfml-system-d.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/sfml-graphics-d.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/sfml-network-d.lib)
+    AddDependency(TARGET LostEngine DEPENDENCY ${PROJECT_SOURCE_DIR}/Dependencies/SFML-2.5.1/lib/windows/sfml-audio-d.lib)
+endif(WIN32)
+
 
 ###################################################################################
 ResolveExternal(TARGET LostEngine)   
