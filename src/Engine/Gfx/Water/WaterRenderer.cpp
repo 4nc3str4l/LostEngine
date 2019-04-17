@@ -7,8 +7,8 @@ WaterRenderer::WaterRenderer(Loader* _loader, WaterShader* _shader, const glm::m
 {
 	m_fbos = _fbos;
     Shader = _shader;
-	m_dudvMap = _loader->LoadTexture(FileSystem::basePath + "./resources/textures/water/waterDUDV.png");
-	m_NormalMap = _loader->LoadTexture(FileSystem::basePath + "./resources/textures/water/matchingNormalMap.png");
+	m_dudvMap = _loader->LoadTexture(FileSystem::basePath + "/resources/textures/water/waterDUDV.png");
+	m_NormalMap = _loader->LoadTexture(FileSystem::basePath + "/resources/textures/water/matchingNormalMap.png");
 
 	Shader->Use();
 	Shader->LoadProjectionMatrix(_projectionMatrix);

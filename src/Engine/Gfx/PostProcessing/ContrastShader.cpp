@@ -3,7 +3,7 @@
 
 namespace le { namespace gfx {
     
-ContrastShader::ContrastShader(): Shader((FileSystem::basePath + "./resources/shaders/postProcessing/contrast.vs").c_str(), (FileSystem::basePath + "./resources/shaders/postProcessing/contrast.fs").c_str())
+ContrastShader::ContrastShader(): Shader((FileSystem::basePath + "/resources/shaders/postProcessing/contrast.vs").c_str(), (FileSystem::basePath + "/resources/shaders/postProcessing/contrast.fs").c_str())
 {
 	bindAttributes();
 }

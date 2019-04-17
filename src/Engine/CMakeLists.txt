@@ -105,4 +105,15 @@ endif(WIN32)
 ResolveExternal(TARGET LostEngine)   
 if (LostEngine_IS_RESOLVED)
     BuildNow(TARGET LostEngine STATIC_LIB OUTPUT_NAME LostEngine DEFINES "ASIO_STANDALONE")
+    
+    
+    if(UNIX)
+        find_package(OpenGL REQUIRED)
+        if(NOT OPENGL_FOUND)
+            message("ERROR: OpenGL not found")
+        endif(NOT OPENGL_FOUND)
+        set(GL_LIBRARY GL GLU X11)
+        target_link_libraries(LostEngine -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio ${GL_LIBRARY} m -lpthread -lm -ldl ${CMAKE_SOURCE_DIR}/build/third_party/src/assimp_assimp_v4.1.0-build/code/libassimp.so)
+
+    endif(UNIX)
 endif()

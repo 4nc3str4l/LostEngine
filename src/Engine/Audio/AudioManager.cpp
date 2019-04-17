@@ -16,12 +16,14 @@ void AudioManager::Init()
 
 void AudioManager::PlaySound()
 {
+	
 	sf::Music* music = new sf::Music();
-	if (!music->openFromFile("S:/AuraProject_Cpp/assets/resources/music/faded.wav")) {
+	if (!music->openFromFile("/home/ancestral/Documents/projects/AuraProject_Cpp/build/src/resources/music/piano2.wav")) {
 		LOG_FAIL("Could not load", "S:/AuraProject_Cpp/assets/resources/music/faded.wav");
 	}
 	// Play the music
 	music->play();
+	
 }
 
 AudioManager::~AudioManager()

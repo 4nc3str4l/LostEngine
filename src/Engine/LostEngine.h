@@ -22,7 +22,7 @@ const std::string ENGINE_VERSION = "V.0.2a";
 class LEngine
 {
 public:
-	LEngine(char* _windowTitle, bool _vSync, int _width, int _height, const std::string& base, GameLogic* _gameLogic);
+	LEngine(char* _windowTitle, bool _vSync, int _width, int _height, std::string& base, GameLogic* _gameLogic);
 	~LEngine();
 	void Start();
 	void Run();

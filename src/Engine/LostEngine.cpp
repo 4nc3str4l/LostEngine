@@ -3,8 +3,12 @@
 
 namespace le {
 
-	LEngine::LEngine(char* _windowTitle, bool _vSync, int _width, int _height, const std::string& base, GameLogic* _gameLogic)
+	LEngine::LEngine(char* _windowTitle, bool _vSync, int _width, int _height, std::string& base, GameLogic* _gameLogic)
 	{
+		#ifdef __linux__
+			base = ".";
+		#endif	
+		
 		window = new Window(_windowTitle, _width, _height, false);
 		loader = new Loader(base);
 		audioManager = new AudioManager();

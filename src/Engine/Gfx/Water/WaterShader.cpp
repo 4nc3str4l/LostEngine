@@ -5,7 +5,7 @@ using namespace tools;
 
 namespace le { namespace water {
 
-WaterShader::WaterShader() : Shader((FileSystem::basePath + "./resources/shaders/Water/water.vs").c_str(), (FileSystem::basePath + "./resources/shaders/Water/water.fs").c_str())
+WaterShader::WaterShader() : Shader((FileSystem::basePath + "/resources/shaders/Water/water.vs").c_str(), (FileSystem::basePath + "./resources/shaders/Water/water.fs").c_str())
 {
 	m_viewMatrix = glGetUniformLocation(ID, "viewMatrix");
 	m_projectionMatrix = glGetUniformLocation(ID, "projectionMatrix");

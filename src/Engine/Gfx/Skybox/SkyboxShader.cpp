@@ -5,8 +5,8 @@
 namespace le { namespace gfx {
    
 	SkyboxShader::SkyboxShader()
-		:Shader((tools::FileSystem::basePath + "./resources/shaders/skybox.vs").c_str(), 
-		(tools::FileSystem::basePath + "./resources/shaders/skybox.fs").c_str())
+		:Shader((tools::FileSystem::basePath + "/resources/shaders/skybox.vs").c_str(), 
+		(tools::FileSystem::basePath + "/resources/shaders/skybox.fs").c_str())
 	{
 		m_projectionMatrix = glGetUniformLocation(ID, "projectionMatrix");
 		m_viewMatrix = glGetUniformLocation(ID, "viewMatrix");
